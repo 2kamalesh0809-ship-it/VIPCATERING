@@ -46,9 +46,9 @@ const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="flex items-center gap-2"
                 >
-                    <Link to="/" className={`flex items-center gap-3 text-2xl font-display font-bold tracking-tighter ${getNavColor()}`}>
-                        <img src="/logo.png" alt="VIP Catering Logo" className="h-10 md:h-12 w-auto object-contain" />
-                        <span className="hidden sm:inline">VIP <span className="text-primary">CATERING</span></span>
+                    <Link to="/" className={`flex items-center gap-2 text-xl md:text-2xl font-display font-bold tracking-tighter ${getNavColor()}`}>
+                        <img src="/logo.png" alt="VIP Catering Logo" className="h-8 md:h-12 w-auto object-contain" />
+                        <span>VIP <span className="text-primary">CATERING</span></span>
                     </Link>
                 </motion.div>
 

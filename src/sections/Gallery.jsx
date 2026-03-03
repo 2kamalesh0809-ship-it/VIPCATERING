@@ -29,6 +29,16 @@ const Gallery = () => {
             url: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070",
             title: "Artisan Platters",
             category: "Private Events"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070",
+            title: "Corporate Excellence",
+            category: "Gala Dinner"
+        },
+        {
+            url: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=2070",
+            title: "Ethereal Weddings",
+            category: "Outdoor Reception"
         }
     ];
 
