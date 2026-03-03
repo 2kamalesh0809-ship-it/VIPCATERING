@@ -47,8 +47,8 @@ const Navbar = () => {
                     className="flex items-center gap-2"
                 >
                     <Link to="/" className={`flex items-center gap-2 text-xl md:text-2xl font-display font-bold tracking-tighter ${getNavColor()}`}>
-                        <img src="/logo.png" alt="VIP Catering Logo" className="h-8 md:h-12 w-auto object-contain" />
-                        <span>VIP <span className="text-primary">CATERING</span></span>
+                        <img src="/logo.png" alt="VIP Catering Logo" className="h-8 md:h-12 w-auto object-contain drop-shadow-sm" />
+                        <span className="inline-block drop-shadow-md">VIP <span className="text-primary">CATERING</span></span>
                     </Link>
                 </motion.div>
 
