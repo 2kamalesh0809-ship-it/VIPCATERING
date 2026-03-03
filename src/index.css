@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-accent-dark font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+  }
+
+  .text-shadow-premium {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Safe Area paddings */
+  .pb-safe-area {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+
+  .pt-safe-area {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* App-like behavior on mobile */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+
+  input,
+  textarea {
+    user-select: auto;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+    /* Prevent bounce */
+  }
+}
+
+/* Custom transitions and scroll behaviors */
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+::selection {
+  @apply bg-primary text-white;
+}
