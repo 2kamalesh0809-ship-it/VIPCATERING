@@ -6,17 +6,70 @@
 
 @layer base {
   body {
-    @apply bg-background text-accent-dark font-sans antialiased overflow-x-hidden;
+    @apply bg-transparent text-[#F5F5F5] font-sans antialiased overflow-x-hidden;
   }
 }
 
 @layer utilities {
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20;
+    @apply bg-[#141414]/60 backdrop-blur-[20px] border border-[#C9A227]/30;
+  }
+
+  .bg-background {
+    background-color: rgba(15, 15, 15, 0.40) !important;
+    backdrop-filter: blur(12px);
+  }
+
+  .bg-background-soft {
+    background-color: rgba(10, 10, 10, 0.50) !important;
+    backdrop-filter: blur(12px);
+  }
+
+  /* Make dark sections slightly translucent for depth */
+  .bg-accent-dark {
+    background-color: rgba(17, 17, 17, 0.6) !important;
+    backdrop-filter: blur(12px);
   }
 
   .text-shadow-premium {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  }
+
+  .text-luxury-shimmer {
+    @apply bg-luxury-gold bg-clip-text text-transparent animate-shimmer;
+    background-size: 200% auto;
+    text-shadow: 0 0 20px rgba(201, 162, 39, 0.3);
+  }
+
+  .btn-luxury-shimmer {
+    @apply bg-luxury-gold animate-shimmer text-[#111] rounded-full shadow-luxury-glow hover:scale-105 hover:brightness-110 transition-all duration-300 relative inline-flex items-center justify-center font-bold overflow-hidden;
+    background-size: 200% auto;
+  }
+
+  .btn-luxury-outline {
+    @apply border border-[#C9A227] text-[#C9A227] rounded-full hover:bg-[#C9A227]/10 transition-all duration-300 bg-transparent relative inline-flex items-center justify-center font-semibold;
+  }
+
+  .card-luxury {
+    @apply bg-[#141414]/60 backdrop-blur-[20px] rounded-3xl border border-[#C9A227]/30 shadow-luxury-card hover:-translate-y-2 hover:shadow-luxury-card-hover transition-all duration-500 overflow-hidden relative;
+  }
+
+  .bg-luxury-blobs {
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(201, 162, 39, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201, 162, 39, 0.08) 0%, transparent 40%);
+  }
+
+  /* Subtle noise texture */
+  .noise-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.04"/%3E%3C/svg%3E');
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* Safe Area paddings */

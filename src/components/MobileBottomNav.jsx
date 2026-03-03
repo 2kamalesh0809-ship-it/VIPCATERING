@@ -10,12 +10,12 @@ const MobileBottomNav = () => {
         { name: 'Home', icon: Home, path: '/' },
         { name: 'Menu', icon: UtensilsCrossed, path: '/menu' },
         { name: 'Quote', icon: Briefcase, path: '/contact', isSpecial: true },
-        { name: 'Gallery', icon: Image, path: '/gallery' },
+        { name: 'Events', icon: Calendar, path: '/events' },
         { name: 'Contact', icon: Phone, path: '/contact' },
     ];
 
     return (
-        <div className="md:hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-gray-100 pb-safe-area pt-2 px-2 z-[60] shadow-[0_-15px_40px_rgba(0,0,0,0.08)]">
+        <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#141414]/90 backdrop-blur-xl border-t border-[#C9A227]/20 pb-safe-area pt-2 px-2 z-[60] shadow-[0_-15px_40px_rgba(0,0,0,0.6)]">
             <div className="flex justify-around items-end max-w-md mx-auto relative">
                 {navItems.map((item) => {
                     const isActive = location.pathname === item.path;
@@ -26,7 +26,7 @@ const MobileBottomNav = () => {
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
-                                    className="w-16 h-16 bg-gold-gradient rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center border-4 border-white text-white relative z-20"
+                                    className="w-16 h-16 btn-luxury-shimmer shadow-luxury-glow flex items-center justify-center border-[3px] border-[#141414] text-[#111] relative z-20"
                                 >
                                     <item.icon size={28} strokeWidth={2.5} />
                                 </motion.div>

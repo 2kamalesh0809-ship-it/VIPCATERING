@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 const CTASection = () => {
     return (
-        <section className="py-24 px-6">
+        <section className="pt-12 pb-8 md:pt-16 md:pb-8 px-6">
             <div className="container mx-auto">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
-                    className="relative bg-accent-dark rounded-[3rem] p-12 md:p-24 overflow-hidden text-center"
+                    className="relative bg-accent-dark rounded-[3rem] p-12 md:p-24 overflow-hidden text-center border border-[#C9A227]/20 shadow-luxury-card"
                 >
                     {/* Background decorative elements */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px] -mr-48 -mt-48" />
@@ -18,7 +18,7 @@ const CTASection = () => {
 
                     <div className="relative z-10 max-w-4xl mx-auto">
                         <h2 className="text-4xl md:text-7xl font-display font-bold text-white mb-8 leading-tight">
-                            Ready to elevate your <span className="text-primary italic">next event?</span>
+                            Ready to elevate your <span className="text-luxury-shimmer italic inline-block">next event?</span>
                         </h2>
                         <p className="text-white/60 text-lg md:text-xl mb-12 max-w-2xl mx-auto">
                             Join 1000+ happy clients who chose VIP Catering for their most important moments. Let's design a menu that speaks your language.
@@ -26,9 +26,7 @@ const CTASection = () => {
 
                         <Link to="/contact">
                             <motion.button
-                                whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(201, 162, 39, 0.3)" }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-gold-gradient text-white px-12 py-5 rounded-full font-bold text-xl transition-all shadow-xl shadow-primary/20"
+                                className="btn-luxury-shimmer px-12 py-5 text-xl relative z-20"
                             >
                                 Start Planning Now
                             </motion.button>

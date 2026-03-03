@@ -132,7 +132,7 @@ const GalleryPage = () => {
     ];
 
     return (
-        <div className="pt-20 bg-background overflow-hidden">
+        <div className="pt-20 bg-transparent overflow-hidden">
             {/* Hero Header */}
             <section className="relative h-[65vh] w-full flex items-center justify-center overflow-hidden">
                 <video
@@ -162,7 +162,7 @@ const GalleryPage = () => {
             </section>
 
             {/* Featured Reels Section */}
-            <section className="py-24 px-6 md:px-12">
+            <section className="py-12 md:py-16 px-6 md:px-12 relative z-10">
                 <div className="container mx-auto">
                     <div className="flex items-end justify-between mb-16">
                         <div>
@@ -184,11 +184,11 @@ const GalleryPage = () => {
             </section>
 
             {/* Masonry Image Gallery */}
-            <section className="py-24 px-6 bg-white">
+            <section className="py-12 md:py-16 px-6 relative z-10">
                 <div className="container mx-auto">
                     <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-6xl font-display font-bold text-accent-dark">The Art of Catering</h2>
-                        <p className="text-gray-500 mt-4 max-w-xl mx-auto">Selected snapshots from our most iconic events across Chennai.</p>
+                        <h2 className="text-4xl md:text-6xl font-display font-bold text-luxury-shimmer text-shadow-premium">The Art of Catering</h2>
+                        <p className="text-gray-400 mt-4 max-w-xl mx-auto">Selected snapshots from our most iconic events across Chennai.</p>
                     </div>
                     <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
                         {masonryImages.map((img, i) => (
@@ -199,11 +199,11 @@ const GalleryPage = () => {
             </section>
 
             {/* Event Highlight Stories */}
-            <section className="py-24 bg-background-soft overflow-hidden">
+            <section className="py-12 md:py-16 bg-background-soft overflow-hidden relative z-10 border-y border-[#C9A227]/10">
                 <div className="container mx-auto px-6">
                     <div className="flex items-center gap-4 mb-16">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-accent-dark">Event Stories</h2>
-                        <div className="grow h-px bg-gray-200" />
+                        <h2 className="text-4xl md:text-5xl font-display font-bold text-luxury-shimmer text-shadow-premium">Event Stories</h2>
+                        <div className="grow h-px bg-[#C9A227]/20" />
                     </div>
 
                     <Swiper
@@ -238,9 +238,9 @@ const GalleryPage = () => {
             </section>
 
             {/* Video Showcase Strip */}
-            <section className="py-24 overflow-hidden bg-accent-dark">
+            <section className="py-12 md:py-16 overflow-hidden bg-[#0a0a0a]/50 backdrop-blur-sm relative z-10">
                 <div className="mb-12 px-6">
-                    <h2 className="text-white font-display font-bold text-3xl">Quick Clips</h2>
+                    <h2 className="text-luxury-shimmer text-shadow-premium font-display font-bold text-3xl">Quick Clips</h2>
                 </div>
 
                 <div className="flex gap-4 animate-scroll whitespace-nowrap">
@@ -266,7 +266,7 @@ const GalleryPage = () => {
             </section>
 
             {/* Final CTA */}
-            <section className="py-32 px-6 bg-beige-gradient">
+            <section className="py-16 md:py-24 px-6 relative z-10 border-t border-[#C9A227]/20">
                 <div className="container mx-auto text-center">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -274,14 +274,14 @@ const GalleryPage = () => {
                         viewport={{ once: true }}
                         className="max-w-4xl mx-auto"
                     >
-                        <h2 className="text-5xl md:text-8xl font-display font-bold text-accent-dark mb-10 leading-tight">
-                            Ready to Create <br /> <span className="text-primary">Your Event?</span>
+                        <h2 className="text-5xl md:text-8xl font-display font-bold text-white mb-10 leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                            Ready to Create <br /> <span className="text-luxury-shimmer italic">Your Event?</span>
                         </h2>
                         <motion.button
                             animate={{ y: [0, -10, 0] }}
                             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                             whileHover={{ scale: 1.05 }}
-                            className="bg-gold-gradient text-white px-12 py-5 rounded-full font-bold text-xl shadow-2xl shadow-primary/30"
+                            className="btn-luxury-shimmer px-12 py-5 text-xl font-bold"
                         >
                             Start Planning Now
                         </motion.button>

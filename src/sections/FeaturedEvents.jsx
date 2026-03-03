@@ -13,7 +13,7 @@ const FeaturedEvents = () => {
     const y2 = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
     return (
-        <section ref={containerRef} className="py-24 bg-background-soft overflow-hidden">
+        <section ref={containerRef} className="py-12 md:py-16 bg-background-soft overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
                     {/* Image Side */}

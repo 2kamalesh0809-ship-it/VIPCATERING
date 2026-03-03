@@ -54,8 +54,11 @@ const Gallery = () => {
     ];
 
     return (
-        <section id="gallery" className="py-24 bg-accent-dark overflow-hidden">
-            <div className="container mx-auto px-6 mb-16">
+        <section id="gallery" className="pt-4 pb-12 md:pt-8 md:pb-16 bg-accent-dark relative overflow-hidden">
+            <div className="bg-luxury-blobs absolute inset-0 mix-blend-screen opacity-[0.05] z-0"></div>
+            <div className="noise-overlay opacity-[0.04] z-0"></div>
+
+            <div className="container mx-auto px-6 mb-16 relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end gap-8">
                     <div>
                         <motion.span
@@ -68,7 +71,7 @@ const Gallery = () => {
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            className="text-4xl md:text-6xl font-display font-bold text-white"
+                            className="text-4xl md:text-6xl font-display font-bold text-luxury-shimmer text-shadow-premium tracking-tight"
                         >
                             Our Experience Reel
                         </motion.h2>
@@ -83,7 +86,7 @@ const Gallery = () => {
                 </div>
             </div>
 
-            <div className="px-4 md:px-0">
+            <div className="px-4 md:px-0 relative z-10">
                 <Swiper
                     modules={[Autoplay, Pagination]}
                     spaceBetween={30}
@@ -102,15 +105,16 @@ const Gallery = () => {
                 >
                     {images.map((item, index) => (
                         <SwiperSlide key={index}>
-                            <div className="relative aspect-[16/10] rounded-3xl overflow-hidden group">
+                            <div className="relative aspect-[16/10] rounded-3xl overflow-hidden group border border-[#C9A227]/20 shadow-luxury-card">
                                 <img
                                     src={item.url}
                                     alt={item.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 p-8 flex flex-col justify-end">
-                                    <span className="text-primary text-sm font-bold uppercase tracking-widest mb-2">{item.category}</span>
-                                    <h3 className="text-2xl font-display font-bold text-white">{item.title}</h3>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80"></div>
+                                <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
+                                    <span className="text-luxury-shimmer text-shadow-premium text-xs md:text-sm font-bold uppercase tracking-widest mb-1 md:mb-2">{item.category}</span>
+                                    <h3 className="text-xl md:text-3xl font-display font-bold text-white">{item.title}</h3>
                                 </div>
                             </div>
                         </SwiperSlide>

@@ -21,7 +21,7 @@ const Counter = ({ value, label }) => {
 
     return (
         <div className="text-center">
-            <div className="text-4xl md:text-5xl font-display font-bold text-accent-dark">
+            <div className="text-4xl md:text-5xl font-display font-bold text-luxury-shimmer text-shadow-premium inline-block">
                 {count}{value.slice(-1)}
             </div>
             <div className="text-sm font-medium text-gray-500 uppercase tracking-widest mt-2">{label}</div>
@@ -31,8 +31,8 @@ const Counter = ({ value, label }) => {
 
 const TrustSection = () => {
     return (
-        <section className="py-20 bg-white">
-            <div className="container mx-auto px-6">
+        <section className="py-12 md:py-16 bg-background-soft border-t border-[#C9A227]/10 relative overflow-hidden">
+            <div className="container mx-auto px-6 relative z-10">
                 {/* Counters */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
                     <Counter value="1000+" label="Events Completed" />

@@ -13,20 +13,21 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="bg-white border-t border-gray-100 pt-24 pb-12">
-            <div className="container mx-auto px-6">
+        <footer className="bg-background-soft border-t border-[#C9A227]/20 pt-8 pb-32 md:pt-12 md:pb-12 relative overflow-hidden">
+            <div className="bg-luxury-blobs absolute inset-0 mix-blend-multiply opacity-50"></div>
+            <div className="container mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                     <div className="col-span-1 lg:col-span-1">
                         <Link to="/" className="flex items-center gap-3 text-2xl font-display font-bold mb-6 block" id="footer-logo">
                             <img src="/logo.png" alt="VIP Catering Logo" className="h-10 w-auto object-contain" />
-                            <span>VIP <span className="text-primary">CATERING</span></span>
+                            <span>VIP <span className="text-luxury-shimmer">CATERING</span></span>
                         </Link>
                         <p className="text-gray-500 leading-relaxed mb-8">
                             Innovating the catering industry in Chennai with premium services and modern culinary experiences since 2016.
                         </p>
                         <div className="flex gap-4">
                             {[Instagram, Facebook, Twitter].map((Icon, i) => (
-                                <a key={i} href="#" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary transition-colors">
+                                <a key={i} href="#" className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary hover:shadow-text-glow transition-all duration-300 transform hover:-translate-y-1">
                                     <Icon size={18} />
                                 </a>
                             ))}
@@ -77,7 +78,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="border-t border-gray-100 pt-12 flex flex-col md:row justify-between items-center gap-6">
+                <div className="border-t border-[#C9A227]/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
                     <p className="text-gray-400 text-sm">
                         © {new Date().getFullYear()} VIP Catering Chennai. All rights reserved.
                     </p>

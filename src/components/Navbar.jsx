@@ -27,14 +27,12 @@ const Navbar = () => {
     ];
 
     const getNavColor = () => {
-        if (isScrolled) return 'text-accent-dark';
-        if (!isHome) return 'text-accent-dark';
-        return 'text-white';
+        return 'text-accent-dark'; // ALWAYS dark now
     };
 
     const getBgColor = () => {
-        if (isScrolled) return 'bg-white/80 backdrop-blur-md py-4 shadow-sm';
-        if (!isHome) return 'bg-white py-6 border-b border-gray-100';
+        if (isScrolled) return 'bg-[#141414]/80 backdrop-blur-xl py-4 border-b border-[#C9A227]/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]';
+        if (!isHome) return 'bg-[#141414]/90 backdrop-blur-xl py-6 border-b border-[#C9A227]/20';
         return 'bg-transparent py-6';
     };
 
@@ -48,7 +46,7 @@ const Navbar = () => {
                 >
                     <Link to="/" className={`flex items-center gap-2 text-xl md:text-2xl font-display font-bold tracking-tighter ${getNavColor()}`}>
                         <img src="/logo.png" alt="VIP Catering Logo" className="h-8 md:h-12 w-auto object-contain drop-shadow-sm" />
-                        <span className="inline-block drop-shadow-md">VIP <span className="text-primary">CATERING</span></span>
+                        <span className="inline-block drop-shadow-md">VIP <span className="text-luxury-shimmer">CATERING</span></span>
                     </Link>
                 </motion.div>
 
@@ -73,9 +71,9 @@ const Navbar = () => {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors shadow-lg shadow-primary/20"
+                        className="btn-luxury-shimmer px-7 py-2.5 text-sm"
                     >
-                        Get Quote
+                        Book Now
                     </motion.button>
                 </div>
 

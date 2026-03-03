@@ -31,7 +31,7 @@ const ContactPage = () => {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl shadow-gray-200/50 border border-gray-100"
+                            className="card-luxury p-8 md:p-12 border-0"
                         >
                             <h2 className="text-3xl font-display font-bold text-accent-dark mb-8">Send Us a Message</h2>
                             <form className="space-y-6">
@@ -41,7 +41,7 @@ const ContactPage = () => {
                                         <input
                                             type="text"
                                             placeholder="Your Full Name"
-                                            className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-primary focus:bg-white outline-none transition-all duration-300"
+                                            className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-[#C9A227] focus:bg-[#111] outline-none transition-all duration-300"
                                         />
                                     </div>
                                     <div>
@@ -49,7 +49,7 @@ const ContactPage = () => {
                                         <input
                                             type="tel"
                                             placeholder="+91 00000 00000"
-                                            className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-primary focus:bg-white outline-none transition-all duration-300"
+                                            className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-[#C9A227] focus:bg-[#111] outline-none transition-all duration-300"
                                         />
                                     </div>
                                 </div>
@@ -58,13 +58,13 @@ const ContactPage = () => {
                                     <input
                                         type="email"
                                         placeholder="hello@example.com"
-                                        className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-primary focus:bg-white outline-none transition-all duration-300"
+                                        className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-[#C9A227] focus:bg-[#111] outline-none transition-all duration-300"
                                     />
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label className="block text-sm font-bold text-accent-dark mb-2">Event Type</label>
-                                        <select className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-primary focus:bg-white outline-none transition-all duration-300 appearance-none">
+                                        <select className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-[#C9A227] focus:bg-[#111] outline-none transition-all duration-300 appearance-none">
                                             <option>Wedding Catering</option>
                                             <option>Corporate Event</option>
                                             <option>Birthday Party</option>
@@ -76,7 +76,7 @@ const ContactPage = () => {
                                         <label className="block text-sm font-bold text-accent-dark mb-2">Event Date</label>
                                         <input
                                             type="date"
-                                            className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-primary focus:bg-white outline-none transition-all duration-300"
+                                            className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-[#C9A227] focus:bg-[#111] outline-none transition-all duration-300"
                                         />
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@ const ContactPage = () => {
                                     <textarea
                                         rows="4"
                                         placeholder="Tell us about your requirements..."
-                                        className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-primary focus:bg-white outline-none transition-all duration-300 resize-none"
+                                        className="w-full px-6 py-4 rounded-xl bg-background-soft border border-transparent focus:border-[#C9A227] focus:bg-[#111] outline-none transition-all duration-300 resize-none"
                                     ></textarea>
                                 </div>
                                 <motion.button

@@ -172,7 +172,7 @@ const MenuPage = () => {
             </section>
 
             {/* Category Filter Tabs */}
-            <section className="sticky top-20 z-40 bg-white/80 backdrop-blur-md border-y border-gray-100">
+            <section className="sticky top-20 z-40 bg-[#141414]/80 backdrop-blur-md border-y border-[#C9A227]/20">
                 <div className="container mx-auto px-6 overflow-x-auto scrollbar-hide">
                     <div className="flex justify-center min-w-max md:min-w-0 py-6 gap-8 md:gap-16">
                         {categories.map((cat) => (
@@ -211,9 +211,9 @@ const MenuPage = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, scale: 0.9 }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                                    className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100"
+                                    className="group card-luxury flex flex-col h-full w-full"
                                 >
-                                    <div className="h-64 overflow-hidden relative">
+                                    <div className="h-64 overflow-hidden relative rounded-t-3xl">
                                         <img
                                             src={item.image}
                                             alt={item.name}
@@ -221,11 +221,11 @@ const MenuPage = () => {
                                         />
                                         <div className="absolute top-4 right-4 flex gap-2">
                                             {item.veg ? (
-                                                <div className="w-6 h-6 bg-white/90 backdrop-blur rounded-full flex items-center justify-center p-1 shadow-md border border-green-500">
+                                                <div className="w-6 h-6 bg-[#111111]/90 backdrop-blur rounded-full flex items-center justify-center p-1 shadow-md border border-green-500">
                                                     <div className="w-full h-full rounded-full bg-green-500" />
                                                 </div>
                                             ) : (
-                                                <div className="w-6 h-6 bg-white/90 backdrop-blur rounded-full flex items-center justify-center p-1 shadow-md border-red-500 border">
+                                                <div className="w-6 h-6 bg-[#111111]/90 backdrop-blur rounded-full flex items-center justify-center p-1 shadow-md border-red-500 border">
                                                     <div className="w-full h-full rounded-full bg-red-500" />
                                                 </div>
                                             )}
@@ -239,7 +239,7 @@ const MenuPage = () => {
                                             {item.description}
                                         </p>
                                         <div className="grow" />
-                                        <div className="pt-6 border-t border-gray-50 flex justify-between items-center">
+                                        <div className="pt-6 border-t border-[#C9A227]/20 flex justify-between items-center">
                                             <span className="text-xs font-bold uppercase tracking-widest text-primary">Signature Dish</span>
                                             <Star size={16} className="text-primary fill-primary" />
                                         </div>
@@ -254,28 +254,28 @@ const MenuPage = () => {
             {/* Special Menu Section */}
             <section className="py-24 bg-background-soft">
                 <div className="container mx-auto px-6">
-                    <div className="relative max-w-5xl mx-auto bg-white rounded-[3rem] p-12 md:p-20 shadow-xl shadow-gray-200/50 border border-primary/10 overflow-hidden">
-                        <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
+                    <div className="relative max-w-5xl mx-auto card-luxury rounded-[3rem] p-12 md:p-20 overflow-hidden">
+                        <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/20 rounded-full blur-[100px]" />
 
                         <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
                             <div className="flex-1">
                                 <span className="text-primary font-bold text-sm uppercase tracking-widest mb-4 block">Exclusive Packages</span>
                                 <h2 className="text-4xl md:text-5xl font-display font-bold text-accent-dark mb-6 leading-tight">
-                                    Custom Event <br /> <span className="text-primary">Menu Packages</span>
+                                    Custom Event <br /> <span className="text-luxury-shimmer italic">Menu Packages</span>
                                 </h2>
-                                <p className="text-gray-500 text-lg mb-8">
+                                <p className="text-gray-400 text-lg mb-8">
                                     Looking for something beyond our signature selection? Our executive chefs work directly with you to create a bespoke culinary journey that perfectly aligns with your event theme and guest preferences.
                                 </p>
                                 <motion.button
                                     whileHover={{ x: 10 }}
-                                    className="flex items-center gap-3 text-primary font-bold text-lg group"
+                                    className="flex items-center gap-3 text-luxury-shimmer font-bold text-lg group text-shadow-glow"
                                 >
                                     Consult Our Chef <ArrowRight size={20} />
                                 </motion.button>
                             </div>
-                            <div className="w-72 h-72 border-2 border-primary/20 rounded-[2.5rem] p-4 flex items-center justify-center relative rotate-3 group hover:rotate-0 transition-transform duration-500">
-                                <div className="w-full h-full bg-primary/10 rounded-[2rem] flex items-center justify-center p-8 text-center">
-                                    <p className="text-primary font-display font-bold text-xl italic leading-tight">
+                            <div className="w-72 h-72 border border-primary/30 rounded-[2.5rem] p-3 flex items-center justify-center relative rotate-3 group hover:rotate-0 transition-transform duration-500 shadow-luxury-glow">
+                                <div className="w-full h-full bg-[#111111]/80 backdrop-blur rounded-[2rem] flex items-center justify-center p-8 text-center border border-primary/20">
+                                    <p className="text-luxury-shimmer font-display font-bold text-xl italic leading-tight text-shadow-glow">
                                         "Art on a plate, flavor in the soul."
                                     </p>
                                 </div>
