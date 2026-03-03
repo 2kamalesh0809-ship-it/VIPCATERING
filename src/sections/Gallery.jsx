@@ -89,7 +89,7 @@ const Gallery = () => {
                     spaceBetween={30}
                     slidesPerView={1.2}
                     centeredSlides={true}
-                    loop={true}
+                    loop={false}
                     autoplay={{
                         delay: 3000,
                         disableOnInteraction: false,
