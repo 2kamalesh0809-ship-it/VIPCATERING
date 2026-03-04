@@ -165,7 +165,7 @@ const MenuPage = () => {
                     <h1 className="text-5xl md:text-7xl font-display font-bold text-accent-dark mb-6">
                         Our Signature <span className="text-primary italic">Menu</span>
                     </h1>
-                    <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light">
+                    <p className="text-xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
                         Curated dishes crafted for unforgettable events. A fusion of heritage expertise and modern culinary innovation.
                     </p>
                 </motion.div>
@@ -235,7 +235,7 @@ const MenuPage = () => {
                                         <h3 className="text-2xl font-display font-bold text-accent-dark mb-3 group-hover:text-primary transition-colors">
                                             {item.name}
                                         </h3>
-                                        <p className="text-gray-500 leading-relaxed mb-6 font-light">
+                                        <p className="text-gray-300 leading-relaxed mb-6 font-light">
                                             {item.description}
                                         </p>
                                         <div className="grow" />

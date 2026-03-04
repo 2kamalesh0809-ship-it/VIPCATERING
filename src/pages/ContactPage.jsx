@@ -4,19 +4,19 @@ import { Phone, Mail, MapPin, Send, MessageCircle } from 'lucide-react';
 
 const ContactPage = () => {
     return (
-        <div className="pt-20 bg-background">
+        <div className="pt-24 bg-background">
             {/* Hero Header */}
-            <section className="py-24 text-center px-6">
+            <section className="pb-10 text-center px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Get In Touch</span>
-                    <h1 className="text-5xl md:text-7xl font-display font-bold text-accent-dark mb-6">
+                    <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-3 block">Get In Touch</span>
+                    <h1 className="text-3xl md:text-5xl font-display font-bold text-accent-dark mb-4 lg:mb-6">
                         Let's Create Something <span className="text-primary italic">Memorable</span>
                     </h1>
-                    <p className="text-xl text-gray-500 max-w-2xl mx-auto font-light">
+                    <p className="text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
                         We're here to help you plan the perfect culinary experience for your special event.
                     </p>
                 </motion.div>
@@ -114,8 +114,8 @@ const ContactPage = () => {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-lg text-accent-dark">Phone</h4>
-                                            <p className="text-gray-500 text-lg">+91 81241 42113 (WhatsApp)</p>
-                                            <p className="text-gray-500 text-lg">+91 93452 10538</p>
+                                            <p className="text-gray-300 text-lg">+91 81241 42113 (WhatsApp)</p>
+                                            <p className="text-gray-300 text-lg">+91 93452 10538</p>
                                             <p className="text-gray-400 text-sm">Mon - Sun, 9am - 9pm</p>
                                         </div>
                                     </div>
@@ -125,16 +125,39 @@ const ContactPage = () => {
                                         </div>
                                         <div>
                                             <h4 className="font-bold text-lg text-accent-dark">Email</h4>
-                                            <p className="text-gray-500 text-lg">hello@vipcatering.com</p>
+                                            <p className="text-gray-300 text-lg">vipcateringservice1@gmail.com</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-6">
                                         <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
                                             <MapPin size={24} />
                                         </div>
-                                        <div>
+                                        <div className="flex-1 w-full">
                                             <h4 className="font-bold text-lg text-accent-dark">Location</h4>
-                                            <p className="text-gray-500 text-lg">First Floor, Second Block, PC 1C, <br />Mogappair West, Ambattur Industrial Estate, <br />Chennai - 600037</p>
+                                            <p className="text-gray-300 text-lg mb-5">First Floor, Second Block, PC 1C, <br />Mogappair West, Ambattur Industrial Estate, <br />Chennai - 600037</p>
+
+                                            <a
+                                                href="https://www.google.com/maps/place/VIP+Catering%E2%84%A2+Chennai/@13.0822486,80.1662888,17z/data=!3m1!4b1!4m6!3m5!1s0x3a5263a692346ad1:0xc2972725b746a5e!8m2!3d13.0822434!4d80.1688637!16s%2Fg%2F11wtpm4rjh?entry=ttu&g_ep=EgoyMDI2MDMwMS4xIKXMDSoASAFQAw%3D%3D"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block relative w-full h-32 md:h-40 rounded-2xl overflow-hidden shadow-lg group border border-[#C9A227]/20"
+                                            >
+                                                <iframe
+                                                    src="https://maps.google.com/maps?q=VIP%20Catering%20Chennai&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                                    className="w-full h-full object-cover scale-[1.2] group-hover:scale-105 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none"
+                                                    style={{ border: 0 }}
+                                                    allowFullScreen=""
+                                                    loading="lazy"
+                                                    referrerPolicy="no-referrer-when-downgrade"
+                                                    title="Location Map"
+                                                />
+                                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
+                                                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                                    <span className="bg-background-soft/90 backdrop-blur-md border border-[#C9A227]/50 text-[#C9A227] px-6 py-2.5 rounded-full font-bold shadow-xl flex items-center gap-2 transform group-hover:scale-105 transition-all duration-300">
+                                                        <MapPin size={18} /> Open in Maps
+                                                    </span>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

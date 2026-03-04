@@ -81,7 +81,7 @@ const Services = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-                        className="text-lg md:text-xl text-gray-600 max-w-2xl font-medium"
+                        className="text-lg md:text-xl text-gray-300 max-w-2xl font-medium"
                     >
                         Premium catering experiences crafted for unforgettable occasions.
                     </motion.p>

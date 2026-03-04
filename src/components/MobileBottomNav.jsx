@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Home, UtensilsCrossed, Calendar, Image, Phone, Briefcase } from 'lucide-react';
+import { Home, UtensilsCrossed, Calendar, Sparkles, Briefcase } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 const MobileBottomNav = () => {
@@ -8,10 +8,10 @@ const MobileBottomNav = () => {
 
     const navItems = [
         { name: 'Home', icon: Home, path: '/' },
-        { name: 'Menu', icon: UtensilsCrossed, path: '/menu' },
-        { name: 'Quote', icon: Briefcase, path: '/contact', isSpecial: true },
         { name: 'Events', icon: Calendar, path: '/events' },
-        { name: 'Contact', icon: Phone, path: '/contact' },
+        { name: 'Book', icon: Briefcase, path: '/contact', isSpecial: true },
+        { name: 'Menu', icon: UtensilsCrossed, path: '/menu' },
+        { name: 'Services', icon: Sparkles, path: '/services' },
     ];
 
     return (
@@ -22,7 +22,7 @@ const MobileBottomNav = () => {
 
                     if (item.isSpecial) {
                         return (
-                            <Link key="quote-btn" to={item.path} className="relative -top-7 flex flex-col items-center">
+                            <Link key="book-btn" to={item.path} className="relative -top-7 flex flex-col items-center">
                                 <motion.div
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
@@ -31,7 +31,7 @@ const MobileBottomNav = () => {
                                     <item.icon size={28} strokeWidth={2.5} />
                                 </motion.div>
                                 <span className="text-[10px] font-bold uppercase tracking-wider text-primary mt-2">
-                                    Get Quote
+                                    Book Now
                                 </span>
                             </Link>
                         );

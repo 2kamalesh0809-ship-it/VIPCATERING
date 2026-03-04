@@ -12,104 +12,128 @@ import {
     PartyPopper,
     CalendarDays
 } from 'lucide-react';
-
-const ServiceDetail = ({ title, description, highlights, image, reverse, index }) => (
-    <section className={`py-24 ${index % 2 === 0 ? 'bg-white' : 'bg-background-soft'}`}>
-        <div className="container mx-auto px-6">
-            <div className={`flex flex-col ${reverse ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-16 lg:gap-24`}>
-                {/* Image Side */}
-                <motion.div
-                    initial={{ opacity: 0, x: reverse ? 50 : -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="w-full lg:w-1/2"
-                >
-                    <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl">
-                        <img src={image} alt={title} className="w-full h-[500px] object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                    </div>
-                </motion.div>
-
-                {/* Text Side */}
-                <motion.div
-                    initial={{ opacity: 0, x: reverse ? -50 : 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="w-full lg:w-1/2"
-                >
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-accent-dark mb-8 leading-tight">
-                        {title}
-                    </h2>
-                    <div className="space-y-6 text-gray-600 text-lg leading-relaxed mb-10">
-                        {description.map((para, i) => (
-                            <p key={i}>{para}</p>
-                        ))}
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                        {highlights.map((item, i) => (
-                            <div key={i} className="flex items-center gap-3">
-                                <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                </div>
-                                <span className="font-semibold text-accent-dark">{item}</span>
-                            </div>
-                        ))}
-                    </div>
-
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="bg-gold-gradient text-white px-10 py-4 rounded-full font-bold shadow-xl shadow-primary/20 flex items-center gap-2"
-                    >
-                        Enquire Now <ArrowRight size={18} />
-                    </motion.button>
-                </motion.div>
-            </div>
-        </div>
-    </section>
-);
-
-const WhyChooseUs = () => {
-    const reasons = [
-        { icon: Sparkles, title: "Custom Menus", desc: "Tailored culinary journeys designed specifically for your event's theme." },
-        { icon: Users, title: "Professional Staff", desc: "Expert servers and chefs trained to provide a seamless 5-star experience." },
-        { icon: ShieldCheck, title: "Hygienic Preparation", desc: "Highest standards of food safety and cleanliness in our state-of-the-art kitchens." },
-        { icon: Clock, title: "Timely Delivery", desc: "Precision planning ensures every dish arrives at its peak flavor and temperature." },
-        { icon: Utensils, title: "Premium Presentation", desc: "Modern, artistic plating and setups that wow your guests at first sight." },
-    ];
-
-    return (
-        <section className="py-24 bg-white">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
-                    <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">The VIP Standard</span>
-                    <h2 className="text-4xl md:text-6xl font-display font-bold text-accent-dark">Why Choose Us</h2>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {reasons.map((reason, i) => (
-                        <motion.div
-                            key={i}
-                            whileHover={{ y: -10 }}
-                            className="p-10 rounded-[2rem] bg-background-soft border border-gray-100 hover:shadow-xl transition-all duration-300"
-                        >
-                            <div className="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center text-primary mb-6">
-                                <reason.icon size={28} />
-                            </div>
-                            <h3 className="text-2xl font-display font-bold text-accent-dark mb-4">{reason.title}</h3>
-                            <p className="text-gray-500 leading-relaxed">{reason.desc}</p>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-};
+import { Link } from 'react-router-dom';
 
 const ServicesPage = () => {
+    const duration = 0.6;
+    const yOffset = 30;
+
+    const fadeInUp = {
+        hidden: { opacity: 0, y: yOffset },
+        visible: { opacity: 1, y: 0, transition: { duration, ease: "easeOut" } }
+    };
+
+    const cardVariants = {
+        hidden: {
+            opacity: 0,
+            y: yOffset,
+            boxShadow: "0px 0px 0px rgba(0,0,0,0)",
+            borderColor: "rgba(201, 162, 39, 0)",
+        },
+        visible: {
+            opacity: 1,
+            y: 0,
+            boxShadow: "0px 10px 30px rgba(0,0,0,0.5)",
+            borderColor: "rgba(201, 162, 39, 0.2)",
+            transition: { duration, ease: "easeOut" }
+        }
+    };
+
+    const ServiceCard = ({ title, description, image }) => (
+        <motion.div
+            variants={{
+                hidden: { opacity: 0, y: yOffset },
+                visible: { opacity: 1, y: 0, transition: { duration, ease: "easeOut" } }
+            }}
+            whileHover={{ y: -6, borderColor: "rgba(201, 162, 39, 0.6)" }}
+            whileTap={{ scale: 0.98 }}
+            className="group bg-[#FDFBF7] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#C9A227]/20 transition-all duration-300 flex flex-col cursor-pointer"
+        >
+            <div className="relative h-64 sm:h-72 overflow-hidden bg-gray-100">
+                <img
+                    src={image}
+                    alt={title}
+                    className="w-full h-full object-cover transition-transform duration-[600ms] ease-out md:group-hover:scale-105"
+                />
+            </div>
+            <div className="p-8 flex flex-col flex-grow">
+                <h3 className="text-2xl font-display font-bold text-[#1A1A1A] mb-3">{title}</h3>
+                <p className="text-[#4A4A4A] line-clamp-2 mb-8 leading-relaxed font-light">
+                    {description[0]}
+                </p>
+                <div className="mt-auto flex items-center text-[#C9A227] font-semibold">
+                    <span className="mr-2">View Details</span>
+                    <ArrowRight
+                        size={18}
+                        className="transition-transform duration-300 ease-out md:group-hover:translate-x-1.5"
+                    />
+                </div>
+            </div>
+        </motion.div>
+    );
+
+    const WhyChooseUs = () => {
+        const reasons = [
+            { icon: Sparkles, title: "Custom Menus", desc: "Tailored culinary journeys designed specifically for your event's theme." },
+            { icon: Users, title: "Professional Staff", desc: "Expert servers and chefs trained to provide a seamless 5-star experience." },
+            { icon: ShieldCheck, title: "Hygienic Preparation", desc: "Highest standards of food safety and cleanliness in our state-of-the-art kitchens." },
+            { icon: Clock, title: "Timely Delivery", desc: "Precision planning ensures every dish arrives at its peak flavor and temperature." },
+            { icon: Utensils, title: "Premium Presentation", desc: "Modern, artistic plating and setups that wow your guests at first sight." },
+        ];
+
+        return (
+            <section className="py-24 relative z-10 border-t border-[#C9A227]/10">
+                <div className="container mx-auto px-6">
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                        }}
+                        className="text-center mb-16"
+                    >
+                        <motion.span variants={fadeInUp} className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">The VIP Standard</motion.span>
+                        <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-display font-bold text-accent-dark">Why Choose Us</motion.h2>
+                    </motion.div>
+
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.1 }}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: {
+                                    staggerChildren: 0.1,
+                                    delayChildren: 0.2
+                                }
+                            }
+                        }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+                    >
+                        {reasons.map((reason, i) => (
+                            <motion.div
+                                key={i}
+                                variants={cardVariants}
+                                whileHover={{ y: -5, boxShadow: "0px 20px 40px rgba(0,0,0,0.7)", borderColor: "rgba(201, 162, 39, 0.4)" }}
+                                className="p-10 rounded-[2.5rem] card-luxury border border-transparent transition-colors duration-300"
+                            >
+                                <div className="w-14 h-14 rounded-2xl bg-[#141414] shadow-luxury-glow flex items-center justify-center text-primary mb-6 border border-[#C9A227]/30">
+                                    <reason.icon size={28} />
+                                </div>
+                                <h3 className="text-2xl font-display font-bold text-accent-dark mb-4">{reason.title}</h3>
+                                <p className="text-gray-300 leading-relaxed font-light">{reason.desc}</p>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+        );
+    };
+
     const serviceDetails = [
         {
             title: "Wedding Catering",
@@ -156,57 +180,74 @@ const ServicesPage = () => {
     return (
         <div className="pt-20">
             {/* Hero Header */}
-            <section className="relative h-[60vh] w-full overflow-hidden flex items-center justify-center">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069"
-                        alt="Catering Background"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/60" />
-                </div>
+            <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 w-full flex items-center justify-center bg-transparent">
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative z-10 text-center px-6"
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                        hidden: { opacity: 0 },
+                        visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+                    }}
+                    className="relative z-10 text-center px-6 max-w-4xl mx-auto"
                 >
-                    <h1 className="text-5xl md:text-7xl font-display font-bold text-white mb-6">
+                    <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-display font-bold text-accent-dark mb-6">
                         Our Catering <span className="text-primary italic">Services</span>
-                    </h1>
-                    <p className="text-xl text-white/80 max-w-2xl mx-auto font-light">
+                    </motion.h1>
+                    <motion.p variants={fadeInUp} className="text-xl text-gray-300 max-w-2xl mx-auto font-light">
                         Tailored experiences for every celebration. From royal weddings to modern corporate galas, we bring your vision to the table.
-                    </p>
+                    </motion.p>
                 </motion.div>
             </section>
 
-            {/* Service Details */}
-            {serviceDetails.map((service, index) => (
-                <ServiceDetail key={index} {...service} index={index} />
-            ))}
+            {/* Service Cards Grid */}
+            <section className="py-24 relative z-10">
+                <div className="container mx-auto px-6">
+                    <motion.div
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.1 }}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: { opacity: 1, transition: { staggerChildren: 0.15 } }
+                        }}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14"
+                    >
+                        {serviceDetails.map((service, index) => (
+                            <ServiceCard key={index} {...service} />
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
 
             {/* Why Choose Us */}
             <WhyChooseUs />
 
             {/* Final CTA */}
-            <section className="py-24 px-6 bg-beige-gradient">
+            <section className="py-24 px-6 relative z-10 border-t border-[#C9A227]/10">
                 <div className="container mx-auto">
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={{
+                            hidden: { opacity: 0, y: yOffset },
+                            visible: { opacity: 1, y: 0, transition: { duration, ease: "easeOut" } }
+                        }}
                         className="text-center max-w-4xl mx-auto"
                     >
                         <h2 className="text-4xl md:text-7xl font-display font-bold text-accent-dark mb-10 leading-tight">
                             Let’s Plan Your <br /> <span className="text-primary">Next Event</span>
                         </h2>
-                        <motion.button
-                            animate={{ y: [0, -10, 0] }}
-                            transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-                            whileHover={{ scale: 1.05 }}
-                            className="bg-gold-gradient text-white px-12 py-5 rounded-full font-bold text-xl shadow-2xl shadow-primary/30"
-                        >
-                            Start Planning Now
-                        </motion.button>
+                        <Link to="/contact">
+                            <motion.button
+                                animate={{ y: [0, -10, 0] }}
+                                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                                whileHover={{ scale: 1.05 }}
+                                className="btn-luxury-shimmer px-12 py-5 text-xl font-bold"
+                            >
+                                Start Planning Now
+                            </motion.button>
+                        </Link>
                     </motion.div>
                 </div>
             </section>

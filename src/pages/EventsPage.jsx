@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Pagination } from 'swiper/modules';
@@ -8,7 +10,7 @@ import 'swiper/css/pagination';
 
 import CTASection from '../sections/CTASection';
 
-const eventsData = [
+const defaultEvents = [
     {
         id: 1,
         title: "Luxury Wedding Catering",
@@ -97,7 +99,7 @@ const EventCard = ({ event, isSmall = false }) => {
                     {event.location}
                 </div>
 
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">
                     {event.description}
                 </p>
 
@@ -115,6 +117,45 @@ const EventCard = ({ event, isSmall = false }) => {
 };
 
 const EventsPage = () => {
+    const [events, setEvents] = useState(defaultEvents);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'events'), (snapshot) => {
+            if (!snapshot.empty) {
+                const liveData = snapshot.docs.map(doc => {
+                    const data = doc.data();
+
+                    let formattedDate = data.date || "TBD";
+                    try {
+                        if (data.date && data.date.includes('-')) {
+                            const d = new Date(data.date);
+                            const day = d.getDate().toString().padStart(2, '0');
+                            const month = d.toLocaleString('default', { month: 'short' });
+                            const year = d.getFullYear();
+                            formattedDate = `${day} ${month} ${year}`;
+                        }
+                    } catch (e) { }
+
+                    return {
+                        id: doc.id,
+                        title: data.title || "VIP Event",
+                        date: formattedDate,
+                        location: data.location || "Catering Event",
+                        price: data.price ? `Starts ₹${data.price}` : "Premium",
+                        image: data.imageUrl || "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000",
+                        description: data.desc || "A beautifully catered experience.",
+                        createdAt: data.createdAt?.toMillis() || Date.now()
+                    };
+                });
+                liveData.sort((a, b) => b.createdAt - a.createdAt);
+                setEvents(liveData);
+            } else {
+                setEvents(defaultEvents);
+            }
+        });
+        return () => unsubscribe();
+    }, []);
+
     return (
         <div className="bg-background-soft min-h-screen pt-32 relative overflow-hidden">
             <div className="bg-luxury-blobs absolute inset-0 mix-blend-multiply opacity-50 z-0"></div>
@@ -134,7 +175,7 @@ const EventsPage = () => {
                     <h1 className="text-5xl md:text-7xl font-display font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-6">
                         Our Events
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-600 font-medium">
+                    <p className="text-lg md:text-xl text-gray-300 font-medium">
                         Discover the premium catering experiences we've crafted for unforgettable occasions across the country.
                     </p>
                 </motion.div>
@@ -167,7 +208,7 @@ const EventsPage = () => {
                             modules={[FreeMode]}
                             className="!pb-12 !pr-6"
                         >
-                            {eventsData.slice(0, 5).map((event) => (
+                            {events.slice(0, 5).map((event) => (
                                 <SwiperSlide key={`featured-${event.id}`} className="h-auto">
                                     <EventCard event={event} />
                                 </SwiperSlide>
@@ -177,28 +218,7 @@ const EventsPage = () => {
                 </div>
             </section>
 
-            {/* 3) ALL EVENTS GRID */}
-            <section className="container mx-auto px-6 mb-32 relative z-10">
-                <div className="mb-12">
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-luxury-shimmer text-shadow-premium">
-                        Complete Event Catalog
-                    </h2>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    {eventsData.map((event, index) => (
-                        <motion.div
-                            key={`grid-${event.id}`}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                        >
-                            <EventCard event={event} isSmall={true} />
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
 
             <CTASection />
         </div>

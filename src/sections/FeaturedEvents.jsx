@@ -44,10 +44,10 @@ const FeaturedEvents = () => {
                             viewport={{ once: true }}
                         >
                             <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Signature Events</span>
-                            <h2 className="text-4xl md:text-6xl font-display font-bold text-accent-dark mb-8 leading-tight">
+                            <h2 className="text-4xl md:text-6xl font-display font-bold text-luxury-shimmer text-shadow-premium mb-8 leading-tight uppercase">
                                 Crafting Moments that <br /> Stay Forever.
                             </h2>
-                            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
                                 From intimate gatherings to grand celebrations, we bring a touch of sophistication to every event. Our menus are meticulously designed to surprise your palate and delight your guests.
                             </p>
 
@@ -57,8 +57,8 @@ const FeaturedEvents = () => {
                                         <div className="w-3 h-3 rounded-full bg-primary" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">Bespoke Menu Design</h3>
-                                        <p className="text-gray-500">Tailored culinary journeys crafted by our expert chefs.</p>
+                                        <h3 className="font-bold text-xl text-white mb-1">Bespoke Menu Design</h3>
+                                        <p className="text-gray-400">Tailored culinary journeys crafted by our expert chefs.</p>
                                     </div>
                                 </div>
                                 <div className="flex items-start gap-4">
@@ -66,8 +66,8 @@ const FeaturedEvents = () => {
                                         <div className="w-3 h-3 rounded-full bg-primary" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-xl mb-1">Artisan Presentation</h3>
-                                        <p className="text-gray-500">Visually stunning setups that define a modern startup brand.</p>
+                                        <h3 className="font-bold text-xl text-white mb-1">Artisan Presentation</h3>
+                                        <p className="text-gray-400">Visually stunning setups that define a modern startup brand.</p>
                                     </div>
                                 </div>
                             </div>
@@ -75,10 +75,10 @@ const FeaturedEvents = () => {
                             <Link to="/events" className="inline-block">
                                 <motion.button
                                     whileHover={{ x: 10 }}
-                                    className="flex items-center gap-3 text-accent-dark font-bold text-lg group"
+                                    className="flex items-center gap-3 text-white font-bold text-lg group"
                                 >
                                     Learn More
-                                    <span className="w-12 h-0.5 bg-primary group-hover:w-16 transition-all duration-300" />
+                                    <span className="w-12 h-0.5 bg-primary group-hover:w-16 transition-all duration-300 shadow-glow" />
                                 </motion.button>
                             </Link>
                         </motion.div>

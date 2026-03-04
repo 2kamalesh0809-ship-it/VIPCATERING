@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { collection, onSnapshot } from 'firebase/firestore';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, FreeMode } from 'swiper/modules';
 import { motion } from 'framer-motion';
@@ -11,49 +13,91 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/free-mode';
 
+const defaultEvents = [
+    {
+        id: 1,
+        title: "Royal Rajputana Wedding",
+        date: "15 MAR",
+        location: "Leela Palace, Chennai",
+        price: "2,500",
+        image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069"
+    },
+    {
+        id: 2,
+        title: "Corporate Excellence Gala",
+        date: "22 MAR",
+        location: "ITC Grand Chola, Chennai",
+        price: "1,800",
+        image: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2070"
+    },
+    {
+        id: 3,
+        title: "Traditional South Indian Fest",
+        date: "05 APR",
+        location: "Mogappair West, Chennai",
+        price: "1,200",
+        image: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070"
+    },
+    {
+        id: 4,
+        title: "Exclusive Private Lounge",
+        date: "12 APR",
+        location: "ECR Beach House, Chennai",
+        price: "3,000",
+        image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069"
+    },
+    {
+        id: 5,
+        title: "Modern Fusion Reception",
+        date: "01 MAY",
+        location: "Hyatt Regency, Chennai",
+        price: "2,200",
+        image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070"
+    }
+];
+
 const UpcomingEvents = () => {
-    const events = [
-        {
-            id: 1,
-            title: "Royal Rajputana Wedding",
-            date: "15 MAR",
-            location: "Leela Palace, Chennai",
-            price: "2,500",
-            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069"
-        },
-        {
-            id: 2,
-            title: "Corporate Excellence Gala",
-            date: "22 MAR",
-            location: "ITC Grand Chola, Chennai",
-            price: "1,800",
-            image: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2070"
-        },
-        {
-            id: 3,
-            title: "Traditional South Indian Fest",
-            date: "05 APR",
-            location: "Mogappair West, Chennai",
-            price: "1,200",
-            image: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070"
-        },
-        {
-            id: 4,
-            title: "Exclusive Private Lounge",
-            date: "12 APR",
-            location: "ECR Beach House, Chennai",
-            price: "3,000",
-            image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=2069"
-        },
-        {
-            id: 5,
-            title: "Modern Fusion Reception",
-            date: "01 MAY",
-            location: "Hyatt Regency, Chennai",
-            price: "2,200",
-            image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070"
-        }
-    ];
+    const [events, setEvents] = useState(defaultEvents);
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(collection(db, 'events'), (snapshot) => {
+            if (!snapshot.empty) {
+                const liveData = snapshot.docs.map(doc => {
+                    const data = doc.data();
+
+                    // Format the date strings cleanly for UI display
+                    let formattedDate = data.date || "TBD";
+                    try {
+                        // Attempt to parse standard 'YYYY-MM-DD' html date
+                        if (data.date && data.date.includes('-')) {
+                            const d = new Date(data.date);
+                            const day = d.getDate().toString().padStart(2, '0');
+                            const month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
+                            formattedDate = `${day} ${month}`;
+                        }
+                    } catch (e) { }
+
+                    return {
+                        id: doc.id,
+                        title: data.title || "VIP Event",
+                        date: formattedDate,
+                        location: data.location || "Catering Event",
+                        price: data.price ? data.price.toLocaleString() : "1,500",
+                        image: data.imageUrl || "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069",
+                        createdAt: data.createdAt?.toMillis() || Date.now()
+                    };
+                });
+
+                // Sort by newest created first
+                liveData.sort((a, b) => b.createdAt - a.createdAt);
+
+                setEvents(liveData);
+            } else {
+                setEvents(defaultEvents); // fallback map
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     return (
         <section className="pt-12 pb-12 md:pt-16 md:pb-16 bg-background-soft relative overflow-hidden">
@@ -131,7 +175,7 @@ const UpcomingEvents = () => {
                                     {/* Text Info (Minimalist) */}
                                     <div className="mt-6 space-y-1">
                                         <div className="flex items-center justify-between">
-                                            <span className="text-[11px] font-extrabold text-gray-400 uppercase tracking-[0.2em]">
+                                            <span className="text-[11px] font-extrabold text-[#C9A227] uppercase tracking-[0.2em] opacity-90">
                                                 {event.date}
                                             </span>
                                             <div className="h-px flex-1 bg-[#C9A227]/20 mx-4" />
@@ -143,7 +187,7 @@ const UpcomingEvents = () => {
                                         <h3 className="text-xl font-display font-bold text-accent-dark leading-snug group-hover/card:text-[#C9A227] transition-colors pt-2">
                                             {event.title}
                                         </h3>
-                                        <div className="flex items-center gap-1.5 text-gray-500 text-sm font-medium mt-1">
+                                        <div className="flex items-center gap-1.5 text-gray-300 text-sm font-medium mt-1">
                                             <MapPin size={14} className="text-[#C9A227]/60" />
                                             {event.location}
                                         </div>

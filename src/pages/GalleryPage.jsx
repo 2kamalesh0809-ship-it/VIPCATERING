@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode } from 'swiper/modules';
-import { Play, Pause, ArrowRight, Instagram, PlayCircle } from 'lucide-react';
+import { Play, Pause, ArrowRight, Instagram, PlayCircle, X } from 'lucide-react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -12,26 +12,42 @@ const ReelCard = ({ videoUrl, thumbnailUrl, title, category }) => {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     const containerRef = useRef(null);
+    const [isSideways, setIsSideways] = useState(false);
 
     useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const checkOrientation = () => {
+            if (video.videoWidth > video.videoHeight) {
+                setIsSideways(true);
+            }
+        };
+
+        if (video.readyState >= 1) {
+            checkOrientation();
+        }
+
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    videoRef.current?.play().catch(() => { });
+                    video.play().catch(() => { });
                     setIsPlaying(true);
                 } else {
-                    videoRef.current?.pause();
+                    video.pause();
                     setIsPlaying(false);
                 }
             },
             { threshold: 0.6 }
         );
 
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
+        if (containerRef.current) observer.observe(containerRef.current);
+        video.addEventListener('loadedmetadata', checkOrientation);
 
-        return () => observer.disconnect();
+        return () => {
+            observer.disconnect();
+            video.removeEventListener('loadedmetadata', checkOrientation);
+        };
     }, []);
 
     return (
@@ -40,7 +56,7 @@ const ReelCard = ({ videoUrl, thumbnailUrl, title, category }) => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl group bg-accent-dark"
+            className="relative aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl group bg-accent-dark flex items-center justify-center"
         >
             <video
                 ref={videoRef}
@@ -49,11 +65,15 @@ const ReelCard = ({ videoUrl, thumbnailUrl, title, category }) => {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                className={
+                    isSideways
+                        ? "absolute w-auto h-auto min-w-[200%] min-h-[200%] rotate-0 object-cover transition-transform duration-700 md:group-hover:scale-105"
+                        : "absolute inset-0 w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-105"
+                }
             />
 
             {/* Overlay Details */}
-            <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none">
+            <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none z-10">
                 <span className="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">{category}</span>
                 <h3 className="text-xl font-display font-bold text-white mb-4 leading-tight">{title}</h3>
                 <div className="flex items-center gap-2 text-white/60 text-sm">
@@ -63,7 +83,7 @@ const ReelCard = ({ videoUrl, thumbnailUrl, title, category }) => {
             </div>
 
             {/* Status Overlay */}
-            <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white opacity-0 md:group-hover:opacity-100 transition-opacity z-10">
                 {isPlaying ? <Pause size={18} /> : <Play size={18} />}
             </div>
         </motion.div>
@@ -91,7 +111,89 @@ const MasonryItem = ({ imageUrl, size, title }) => (
     </motion.div>
 );
 
+const QuickClipVideo = ({ src }) => {
+    const videoRef = useRef(null);
+    const [isPortrait, setIsPortrait] = useState(false);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const checkOrientation = () => {
+            if (video.videoHeight > video.videoWidth) {
+                setIsPortrait(true);
+            }
+        };
+
+        if (video.readyState >= 1) {
+            checkOrientation();
+        }
+
+        video.addEventListener('loadedmetadata', checkOrientation);
+        return () => {
+            video.removeEventListener('loadedmetadata', checkOrientation);
+        };
+    }, [src]);
+
+    return (
+        <video
+            ref={videoRef}
+            src={src}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={
+                isPortrait
+                    ? "absolute top-1/2 left-1/2 w-48 h-80 max-w-none -translate-x-1/2 -translate-y-1/2 rotate-0 object-cover transition-all"
+                    : "w-full h-full object-cover transition-all"
+            }
+        />
+    );
+};
+
+const HeroVideo = ({ src }) => {
+    const videoRef = useRef(null);
+    const [isPortrait, setIsPortrait] = useState(false);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) return;
+
+        const checkOrientation = () => {
+            if (video.videoHeight > video.videoWidth) {
+                setIsPortrait(true);
+            }
+        };
+
+        if (video.readyState >= 1) checkOrientation();
+        video.addEventListener('loadedmetadata', checkOrientation);
+
+        return () => {
+            video.removeEventListener('loadedmetadata', checkOrientation);
+        };
+    }, [src]);
+
+    return (
+        <video
+            ref={videoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={
+                isPortrait
+                    ? "absolute top-1/2 left-1/2 w-auto h-auto min-w-[150%] min-h-[150%] -translate-x-1/2 -translate-y-1/2 rotate-0 object-cover opacity-80"
+                    : "absolute inset-0 w-full h-full object-cover scale-105 opacity-80"
+            }
+            src={src}
+        />
+    );
+};
+
 const GalleryPage = () => {
+    const [activeVideo, setActiveVideo] = useState(null);
+
     const reels = [
         {
             title: "Nitro-Smoke Live Stall Experience",
@@ -125,25 +227,14 @@ const GalleryPage = () => {
         { url: "/68620437_2432430000309309_7320786620913811456_n.jpg", size: 'small', title: 'Signature Dish' },
     ];
 
-    const stories = [
-        { title: "The Heritage Wedding", desc: "A 1000-guest traditional celebration in Mogappair West.", img: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070" },
-        { title: "Tech Summit Gala", desc: "Premium corporate catering for over 500 delegates.", img: "https://images.unsplash.com/photo-1505373633513-392cf99a80e1?q=80&w=1974" },
-        { title: "Private Villa Soirée", desc: "Intimate 5-course fine dining for a private anniversary.", img: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069" },
-    ];
+
 
     return (
         <div className="pt-20 bg-transparent overflow-hidden">
             {/* Hero Header */}
             <section className="relative h-[65vh] w-full flex items-center justify-center overflow-hidden">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover scale-105"
-                    src="/get.mp4"
-                />
-                <div className="absolute inset-0 bg-black/60" />
+                <HeroVideo src="/banner.mp4" />
+                <div className="absolute inset-0 bg-black/60 z-0" />
 
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
@@ -198,56 +289,48 @@ const GalleryPage = () => {
                 </div>
             </section>
 
-            {/* Event Highlight Stories */}
-            <section className="py-12 md:py-16 bg-background-soft overflow-hidden relative z-10 border-y border-[#C9A227]/10">
-                <div className="container mx-auto px-6">
-                    <div className="flex items-center gap-4 mb-16">
-                        <h2 className="text-4xl md:text-5xl font-display font-bold text-luxury-shimmer text-shadow-premium">Event Stories</h2>
-                        <div className="grow h-px bg-[#C9A227]/20" />
-                    </div>
-
-                    <Swiper
-                        modules={[Autoplay]}
-                        spaceBetween={30}
-                        slidesPerView={1.2}
-                        autoplay={{ delay: 4000 }}
-                        breakpoints={{
-                            1024: { slidesPerView: 2.5 }
-                        }}
-                        className="pb-16"
-                    >
-                        {stories.map((story, i) => (
-                            <SwiperSlide key={i}>
-                                <motion.div
-                                    whileHover={{ y: -10 }}
-                                    className="relative h-[500px] rounded-[2.5rem] overflow-hidden group shadow-xl"
-                                >
-                                    <img src={story.img} alt={story.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent p-12 flex flex-col justify-end">
-                                        <h3 className="text-3xl font-display font-bold text-white mb-4">{story.title}</h3>
-                                        <p className="text-white/70 mb-8 max-w-sm">{story.desc}</p>
-                                        <button className="bg-white/10 backdrop-blur-md text-white border border-white/20 w-max px-8 py-3 rounded-full font-bold flex items-center gap-3 transition-colors hover:bg-white hover:text-accent-dark">
-                                            View Story <ArrowRight size={18} />
-                                        </button>
-                                    </div>
-                                </motion.div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </div>
-            </section>
-
             {/* Video Showcase Strip */}
-            <section className="py-12 md:py-16 overflow-hidden bg-[#0a0a0a]/50 backdrop-blur-sm relative z-10">
+            <section className="py-12 md:py-16 overflow-hidden relative z-10 w-full">
+                {/* Subtle gradient edges to mask scrolling ends */}
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-20" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-20" />
                 <div className="mb-12 px-6">
                     <h2 className="text-luxury-shimmer text-shadow-premium font-display font-bold text-3xl">Quick Clips</h2>
                 </div>
 
-                <div className="flex gap-4 animate-scroll whitespace-nowrap">
-                    {[1, 2, 3, 4, 5, 6].map((i) => (
-                        <div key={i} className="inline-block w-80 h-48 rounded-2xl overflow-hidden shadow-2xl relative group shrink-0">
-                            <img src={`https://images.unsplash.com/photo-${1550000000000 + i * 1000}?q=80&w=800`} alt="Clip" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all font-semibold" />
-                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity">
+                <div className="flex gap-4 animate-scroll whitespace-nowrap w-max">
+                    {/* Original Set */}
+                    {[
+                        "/video1.mp4",
+                        "/banner.mp4",
+                        "/get.mp4",
+                        "/get (1).mp4",
+                        "/AQMCWHdcJ_tcQ-rae-xbaW2virN-KiknuFRtz7Hu051T7vJrA4F1bIqDbHfikmV1CB99uTR-O6x0se4X9jK29mS0y91jZaBZ.mp4",
+                        "/🎉✨ Your Dream Event, Our VIP Touch! ✨🎉From grand weddings to stylish birthday parties, mouth-w.mp4"
+                    ].map((src, i) => (
+                        <div key={i} onClick={() => setActiveVideo(src)} className="inline-block w-80 h-48 rounded-2xl overflow-hidden shadow-2xl relative group shrink-0 bg-[#0A0A0A] hover:z-30 hover:shadow-luxury-glow hover:scale-105 transition-all duration-500 cursor-pointer">
+                            <div className="w-full h-full opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+                                <QuickClipVideo src={src} />
+                            </div>
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity pointer-events-none">
+                                <Play size={40} className="text-primary fill-primary" />
+                            </div>
+                        </div>
+                    ))}
+                    {/* Duplicate Set for infinite scroll effect */}
+                    {[
+                        "/video1.mp4",
+                        "/banner.mp4",
+                        "/get.mp4",
+                        "/get (1).mp4",
+                        "/AQMCWHdcJ_tcQ-rae-xbaW2virN-KiknuFRtz7Hu051T7vJrA4F1bIqDbHfikmV1CB99uTR-O6x0se4X9jK29mS0y91jZaBZ.mp4",
+                        "/🎉✨ Your Dream Event, Our VIP Touch! ✨🎉From grand weddings to stylish birthday parties, mouth-w.mp4"
+                    ].map((src, i) => (
+                        <div key={`dup-${i}`} onClick={() => setActiveVideo(src)} className="inline-block w-80 h-48 rounded-2xl overflow-hidden shadow-2xl relative group shrink-0 bg-[#0A0A0A] hover:z-30 hover:shadow-luxury-glow hover:scale-105 transition-all duration-500 cursor-pointer">
+                            <div className="w-full h-full opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+                                <QuickClipVideo src={src} />
+                            </div>
+                            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 transition-opacity pointer-events-none">
                                 <Play size={40} className="text-primary fill-primary" />
                             </div>
                         </div>
@@ -288,6 +371,41 @@ const GalleryPage = () => {
                     </motion.div>
                 </div>
             </section>
+
+            {/* Video Modal Overlay */}
+            <AnimatePresence>
+                {activeVideo && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-12"
+                        onClick={() => setActiveVideo(null)}
+                    >
+                        <button
+                            onClick={() => setActiveVideo(null)}
+                            className="absolute top-6 right-6 z-[110] p-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-colors"
+                        >
+                            <X size={24} />
+                        </button>
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden bg-black shadow-[0_0_50px_rgba(201,162,39,0.15)]"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <video
+                                src={activeVideo}
+                                autoPlay
+                                controls
+                                className="w-full h-full object-contain"
+                            />
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

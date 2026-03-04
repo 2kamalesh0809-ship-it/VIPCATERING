@@ -24,7 +24,7 @@ const Counter = ({ value, label }) => {
             <div className="text-4xl md:text-5xl font-display font-bold text-luxury-shimmer text-shadow-premium inline-block">
                 {count}{value.slice(-1)}
             </div>
-            <div className="text-sm font-medium text-gray-500 uppercase tracking-widest mt-2">{label}</div>
+            <div className="text-sm font-medium text-gray-300 uppercase tracking-widest mt-2">{label}</div>
         </div>
     );
 };

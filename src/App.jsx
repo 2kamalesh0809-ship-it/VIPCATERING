@@ -10,6 +10,8 @@ import MenuPage from './pages/MenuPage';
 import ContactPage from './pages/ContactPage';
 import GalleryPage from './pages/GalleryPage';
 import EventsPage from './pages/EventsPage';
+import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 import MobileBottomNav from './components/MobileBottomNav';
 
 // Scroll to top on route change
@@ -82,6 +84,10 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/events" element={<EventsPage />} />
+
+            {/* Private Admin Routes */}
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
           </Routes>
         </main>
         <Footer />
