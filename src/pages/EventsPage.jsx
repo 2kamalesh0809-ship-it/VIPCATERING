@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { db } from '../firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { motion } from 'framer-motion';
@@ -107,9 +108,15 @@ const EventCard = ({ event, isSmall = false }) => {
                     <span className="text-luxury-shimmer text-shadow-premium font-bold text-sm">
                         {event.price}
                     </span>
-                    <button className="w-8 h-8 rounded-full border border-[#C9A227] flex items-center justify-center text-[#C9A227] group-hover:bg-[#C9A227] group-hover:text-white group-hover:shadow-luxury-glow transition-all duration-300">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                    </button>
+                    <Link to="/contact">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-5 py-2 bg-gold-gradient text-black rounded-full font-bold text-xs uppercase tracking-wider shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 flex items-center gap-2"
+                        >
+                            Book Now <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </motion.button>
+                    </Link>
                 </div>
             </div>
         </motion.div>
