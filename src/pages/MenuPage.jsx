@@ -214,16 +214,16 @@ const MenuPage = () => {
                         exit={{ y: 50, opacity: 0 }}
                         className="fixed bottom-32 md:bottom-10 inset-x-0 z-[100] flex justify-center px-4"
                     >
-                        <div className="bg-[#1A1A1A] backdrop-blur-2xl border border-[#C9A227]/40 rounded-2xl md:rounded-full py-2 px-3 md:px-8 flex items-center justify-between gap-2 md:gap-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] w-full max-w-[280px] md:w-auto md:min-w-[420px]">
-                            <div className="flex items-center gap-2 md:gap-4 border-r border-white/10 pr-2 md:pr-6">
+                        <div className="bg-[#1A1A1A] backdrop-blur-2xl border border-[#C9A227]/40 rounded-2xl md:rounded-full py-3 px-4 md:px-8 flex items-center justify-between gap-3 md:gap-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] w-full max-w-[320px] md:w-auto md:min-w-[420px]">
+                            <div className="flex items-center gap-3 md:gap-4 border-r border-white/10 pr-3 md:pr-6">
                                 <div className="relative">
-                                    <ShoppingCart size={16} className="text-primary md:w-6 md:h-6" />
-                                    <span className="absolute -top-1.5 -right-1.5 h-[14px] min-w-[14px] px-1 bg-red-500 text-white text-[7px] md:text-[10px] font-bold rounded-full flex items-center justify-center">
+                                    <ShoppingCart size={18} className="text-primary md:w-6 md:h-6" />
+                                    <span className="absolute -top-2 -right-2 h-[16px] min-w-[16px] px-1 bg-red-500 text-white text-[8px] md:text-[10px] font-bold rounded-full flex items-center justify-center">
                                         {selectedItems.length}
                                     </span>
                                 </div>
                                 <div className="text-left">
-                                    <p className="text-white text-[9px] md:text-xs font-bold leading-none">Selected</p>
+                                    <p className="text-white text-[10px] md:text-xs font-bold leading-none mb-0.5">Selected</p>
                                 </div>
                             </div>
 
@@ -232,13 +232,13 @@ const MenuPage = () => {
                                     onClick={() => setSelectedItems([])}
                                     className="text-gray-400 hover:text-red-500 transition-colors flex items-center p-1 group"
                                 >
-                                    <Trash2 size={12} className="md:w-5 md:h-5 group-hover:scale-110 transition-transform" />
+                                    <Trash2 size={14} className="md:w-5 md:h-5 group-hover:scale-110 transition-transform" />
                                 </button>
                                 <button
                                     onClick={() => navigate('/quotation')}
-                                    className="bg-primary text-black px-3.5 md:px-12 py-1.5 md:py-3 rounded-full font-bold text-[9px] md:text-sm hover:bg-[#b08d22] transition-all hover:scale-105 active:scale-95 shadow-luxury-glow flex items-center gap-1"
+                                    className="bg-primary text-black px-4.5 md:px-12 py-2 md:py-3 rounded-full font-bold text-[10px] md:text-sm hover:bg-[#b08d22] transition-all hover:scale-105 active:scale-95 shadow-luxury-glow flex items-center gap-1.5"
                                 >
-                                    Proceed <ArrowRight size={12} className="md:w-5 md:h-5" />
+                                    Proceed <ArrowRight size={14} className="md:w-5 md:h-5" />
                                 </button>
                             </div>
                         </div>
