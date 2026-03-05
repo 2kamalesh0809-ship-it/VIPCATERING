@@ -162,7 +162,7 @@ const EventsPage = () => {
             <div className="noise-overlay opacity-[0.03] z-0"></div>
 
             {/* 1) PAGE HEADER */}
-            <div className="container mx-auto px-6 mb-16 md:mb-24 relative z-10">
+            <div className="container mx-auto px-6 mb-8 md:mb-24 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -172,17 +172,17 @@ const EventsPage = () => {
                     <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
                         Catered Experiences
                     </span>
-                    <h1 className="text-5xl md:text-7xl  font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-6">
+                    <h1 className="text-5xl md:text-7xl  font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-4 md:mb-6">
                         Our Events
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-300 font-medium">
+                    <p className="hidden md:block text-lg md:text-xl text-gray-300 font-medium">
                         Discover the premium catering experiences we've crafted for unforgettable occasions across the country.
                     </p>
                 </motion.div>
             </div>
 
             {/* 2) FEATURED EVENTS CAROUSEL */}
-            <section className="mb-24 md:mb-32 overflow-hidden">
+            <section className="mb-24 md:mb-32 mt-0 overflow-hidden">
                 <div className="container mx-auto px-6 mb-8 flex items-end justify-between relative z-10">
                     <h2 className="text-2xl md:text-3xl  font-bold text-accent-dark">
                         Upcoming & Featured

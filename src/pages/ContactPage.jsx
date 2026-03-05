@@ -71,26 +71,26 @@ const ContactPage = () => {
     };
 
     return (
-        <div className="pt-24 bg-background">
+        <div className="pt-20 md:pt-28 bg-background">
             {/* Hero Header */}
-            <section className="pb-10 text-center px-6">
+            <section className="pt-4 pb-6 md:pb-12 text-center px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-3 block">Get In Touch</span>
-                    <h1 className="text-3xl md:text-5xl  font-bold text-white mb-4 lg:mb-6">
+                    <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-2 md:mb-3 block">Get In Touch</span>
+                    <h1 className="text-2xl md:text-5xl font-bold text-white mb-3 md:mb-6 leading-tight">
                         Let's Create Something <span className="text-primary italic">Memorable</span>
                     </h1>
-                    <p className="text-lg text-gray-200 max-w-2xl mx-auto font-light leading-relaxed">
+                    <p className="text-sm md:text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed opacity-80">
                         We're here to help you plan the perfect culinary experience for your special event.
                     </p>
                 </motion.div>
             </section>
 
             {/* Contact Grid */}
-            <section className="pb-24 px-6">
+            <section className="pb-20 md:pb-28 px-4 md:px-6">
                 <div className="container mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                         {/* Contact Form */}

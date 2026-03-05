@@ -46,7 +46,7 @@ const ParallaxBackground = () => {
         <img
           src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070"
           alt="Luxury VIP Catering Atmosphere"
-          className="w-full h-full object-cover brightness-[0.4] saturate-[1.1]"
+          className="w-full h-full object-cover brightness-[0.4] saturate-[1.1] blur-[3px]"
         />
       </motion.div>
 

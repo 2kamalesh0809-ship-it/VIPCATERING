@@ -57,17 +57,10 @@ const ServicesPage = () => {
                 />
             </div>
             <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl  font-bold text-[#1A1A1A] mb-3">{title}</h3>
-                <p className="text-[#4A4A4A] line-clamp-2 mb-8 leading-relaxed font-light">
+                <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">{title}</h3>
+                <p className="text-[#4A4A4A] line-clamp-2 md:line-clamp-none leading-relaxed font-light">
                     {description[0]}
                 </p>
-                <div className="mt-auto flex items-center text-[#C9A227] font-semibold">
-                    <span className="mr-2">View Details</span>
-                    <ArrowRight
-                        size={18}
-                        className="transition-transform duration-300 ease-out md:group-hover:translate-x-1.5"
-                    />
-                </div>
             </div>
         </motion.div>
     );
@@ -178,9 +171,9 @@ const ServicesPage = () => {
     ];
 
     return (
-        <div className="pt-20">
+        <div className="pt-16">
             {/* Hero Header */}
-            <section className="relative pt-24 pb-16 md:pt-32 md:pb-20 w-full flex items-center justify-center bg-transparent">
+            <section className="relative pt-16 pb-8 md:pt-32 md:pb-20 w-full flex items-center justify-center bg-transparent">
                 <motion.div
                     initial="hidden"
                     animate="visible"
@@ -190,17 +183,17 @@ const ServicesPage = () => {
                     }}
                     className="relative z-10 text-center px-6 max-w-4xl mx-auto"
                 >
-                    <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl  font-bold text-accent-dark mb-6">
+                    <motion.h1 variants={fadeInUp} className="text-4xl md:text-7xl font-bold text-accent-dark mb-4 md:mb-6 leading-tight">
                         Our Catering <span className="text-primary italic">Services</span>
                     </motion.h1>
-                    <motion.p variants={fadeInUp} className="text-xl text-gray-300 max-w-2xl mx-auto font-light">
+                    <motion.p variants={fadeInUp} className="hidden md:block text-xl text-gray-300 max-w-2xl mx-auto font-light">
                         Tailored experiences for every celebration. From royal weddings to modern corporate galas, we bring your vision to the table.
                     </motion.p>
                 </motion.div>
             </section>
 
             {/* Service Cards Grid */}
-            <section className="py-24 relative z-10">
+            <section className="py-12 md:py-24 relative z-10">
                 <div className="container mx-auto px-6">
                     <motion.div
                         initial="hidden"

@@ -101,8 +101,8 @@ const MenuPage = () => {
     };
 
     return (
-        <div className="pt-20 pb-32">
-            <section className="relative h-[40vh] flex items-center justify-center bg-background overflow-hidden px-6">
+        <div className="pt-16 pb-20">
+            <section className="relative h-[30vh] md:h-[40vh] flex items-center justify-center bg-background overflow-hidden px-6">
                 <div className="absolute inset-0 opacity-5 pointer-events-none">
                     <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
                         <defs>
@@ -120,23 +120,23 @@ const MenuPage = () => {
                     transition={{ duration: 0.8 }}
                     className="relative z-10 text-center"
                 >
-                    <span className="text-primary font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Select Your Gourmet Taste</span>
-                    <h1 className="text-5xl md:text-7xl  font-bold text-accent-dark mb-6">
+                    <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-3 md:mb-4 block">Select Your Gourmet Taste</span>
+                    <h1 className="text-4xl md:text-7xl font-bold text-accent-dark mb-4 md:mb-6 leading-tight">
                         Custom <span className="text-primary italic">Selection</span>
                     </h1>
-                    <p className="text-gray-400 font-medium">Click on items to build your customized event quotation.</p>
+                    <p className="hidden md:block text-gray-400 font-medium">Click on items to build your customized event quotation.</p>
                 </motion.div>
             </section>
 
             {/* Category Filter Tabs - Premium Light Theme */}
             <section className="sticky top-20 z-40 bg-white/80 backdrop-blur-xl border-y border-gray-200/50 shadow-sm">
-                <div className="container mx-auto px-6 overflow-x-auto scrollbar-hide">
-                    <div className="flex justify-center min-w-max md:min-w-0 py-6 gap-8 md:gap-16">
+                <div className="container mx-auto px-4 md:px-6 overflow-x-auto scrollbar-hide">
+                    <div className="flex justify-start md:justify-center min-w-max md:min-w-0 py-3 md:py-6 gap-6 md:gap-16">
                         {categories.map((cat) => (
                             <button
                                 key={cat}
                                 onClick={() => setActiveTab(cat)}
-                                className={`relative py-2 text-lg  font-bold transition-all duration-300 ${activeTab === cat ? 'text-black scale-110' : 'text-black/60 hover:text-black'
+                                className={`relative py-1 md:py-2 text-base md:text-lg font-bold transition-all duration-300 ${activeTab === cat ? 'text-black scale-105 md:scale-110' : 'text-black/60 hover:text-black'
                                     }`}
                             >
                                 {cat}
@@ -153,7 +153,7 @@ const MenuPage = () => {
             </section>
 
             {/* Menu List Grid - PREMIUM LIGHT THEME */}
-            <section className="py-20 min-h-[60vh] bg-gradient-to-b from-[#f9fbff] to-[#eef3f9] relative overflow-hidden">
+            <section className="py-8 md:py-20 min-h-[60vh] bg-gradient-to-b from-[#f9fbff] to-[#eef3f9] relative overflow-hidden">
                 {/* Blurred Decorative Shapes */}
                 <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
                     <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
@@ -175,7 +175,7 @@ const MenuPage = () => {
                                         exit={{ opacity: 0, scale: 0.9 }}
                                         transition={{ duration: 0.4, delay: index * 0.05 }}
                                         onClick={() => toggleItem(item)}
-                                        className={`relative group p-6 rounded-2xl transition-all duration-300 flex items-center justify-between cursor-pointer
+                                        className={`relative group p-4 md:p-6 rounded-2xl transition-all duration-300 flex items-center justify-between cursor-pointer
                                             bg-white/65 backdrop-blur-[12px] border border-white/80 shadow-[0_8px_25px_rgba(0,0,0,0.08)]
                                             ${isSelected ? 'ring-2 ring-primary scale-[1.02] shadow-[0_15px_40px_rgba(0,0,0,0.12)] !bg-white/90' : 'hover:bg-white/80 hover:shadow-[0_12px_30px_rgba(0,0,0,0.1)]'}`}
                                     >
@@ -183,7 +183,7 @@ const MenuPage = () => {
                                             <div className={`w-3.5 h-3.5 rounded-sm border ${item.veg ? 'border-green-600' : 'border-red-600'} p-0.5 flex-shrink-0 bg-white/50`}>
                                                 <div className={`w-full h-full rounded-full ${item.veg ? 'bg-green-600' : 'bg-red-600'}`} />
                                             </div>
-                                            <h3 className={`text-lg  font-semibold transition-colors ${isSelected ? 'text-primary' : 'text-[#1a1a1a]'}`}>
+                                            <h3 className={`text-base md:text-lg font-semibold transition-colors ${isSelected ? 'text-primary' : 'text-[#1a1a1a]'}`}>
                                                 {item.name}
                                             </h3>
                                         </div>
@@ -209,38 +209,36 @@ const MenuPage = () => {
             <AnimatePresence>
                 {selectedItems.length > 0 && (
                     <motion.div
-                        initial={{ y: 100, opacity: 0 }}
+                        initial={{ y: 50, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 100, opacity: 0 }}
-                        className="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-auto md:min-w-[400px]"
+                        exit={{ y: 50, opacity: 0 }}
+                        className="fixed bottom-32 md:bottom-10 inset-x-0 z-[100] flex justify-center px-4"
                     >
-                        <div className="bg-[#1A1A1A]/90 backdrop-blur-xl border border-[#C9A227]/30 rounded-full p-2 px-4 flex items-center justify-center gap-6 md:gap-10 shadow-2xl overflow-hidden shadow-luxury-glow">
-                            <div className="flex items-center gap-4 border-r border-white/10 pr-6">
+                        <div className="bg-[#1A1A1A] backdrop-blur-2xl border border-[#C9A227]/40 rounded-2xl md:rounded-full py-2 px-3 md:px-8 flex items-center justify-between gap-2 md:gap-10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] w-full max-w-[280px] md:w-auto md:min-w-[420px]">
+                            <div className="flex items-center gap-2 md:gap-4 border-r border-white/10 pr-2 md:pr-6">
                                 <div className="relative">
-                                    <ShoppingCart size={24} className="text-primary" />
-                                    <span className="absolute -top-3 -right-3 h-[20px] min-w-[20px] px-1 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                                    <ShoppingCart size={16} className="text-primary md:w-6 md:h-6" />
+                                    <span className="absolute -top-1.5 -right-1.5 h-[14px] min-w-[14px] px-1 bg-red-500 text-white text-[7px] md:text-[10px] font-bold rounded-full flex items-center justify-center">
                                         {selectedItems.length}
                                     </span>
                                 </div>
-                                <div className="hidden sm:block text-left">
-                                    <p className="text-white text-xs font-bold leading-none mb-1">Items Selected</p>
-                                    <p className="text-gray-400 text-[10px] uppercase tracking-tighter">Ready for Quotation</p>
+                                <div className="text-left">
+                                    <p className="text-white text-[9px] md:text-xs font-bold leading-none">Selected</p>
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-4 md:gap-8">
+                            <div className="flex items-center gap-2 md:gap-8">
                                 <button
                                     onClick={() => setSelectedItems([])}
-                                    className="text-gray-400 hover:text-red-500 transition-colors flex items-center gap-2 text-xs font-bold uppercase tracking-wider group"
+                                    className="text-gray-400 hover:text-red-500 transition-colors flex items-center p-1 group"
                                 >
-                                    <Trash2 size={18} className="group-hover:scale-110 transition-transform" />
-                                    <span className="hidden md:inline">Clear</span>
+                                    <Trash2 size={12} className="md:w-5 md:h-5 group-hover:scale-110 transition-transform" />
                                 </button>
                                 <button
                                     onClick={() => navigate('/quotation')}
-                                    className="bg-primary text-black px-8 md:px-12 py-3 rounded-full font-bold text-sm hover:bg-[#b08d22] transition-all hover:scale-105 active:scale-95 shadow-luxury-glow flex items-center gap-2"
+                                    className="bg-primary text-black px-3.5 md:px-12 py-1.5 md:py-3 rounded-full font-bold text-[9px] md:text-sm hover:bg-[#b08d22] transition-all hover:scale-105 active:scale-95 shadow-luxury-glow flex items-center gap-1"
                                 >
-                                    Proceed <ArrowRight size={18} />
+                                    Proceed <ArrowRight size={12} className="md:w-5 md:h-5" />
                                 </button>
                             </div>
                         </div>
