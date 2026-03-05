@@ -31,8 +31,8 @@ const Navbar = () => {
     };
 
     const getBgColor = () => {
-        if (isScrolled) return 'bg-[#141414]/80 backdrop-blur-xl py-4 border-b border-[#C9A227]/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]';
-        if (!isHome) return 'bg-[#141414]/90 backdrop-blur-xl py-6 border-b border-[#C9A227]/20';
+        if (isScrolled) return 'bg-[#141414]/90 backdrop-blur-md py-4 border-b border-[#C9A227]/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]';
+        if (!isHome) return 'bg-[#141414]/95 backdrop-blur-md py-6 border-b border-[#C9A227]/20';
         return 'bg-transparent py-6';
     };
 
@@ -44,7 +44,7 @@ const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="flex items-center gap-2"
                 >
-                    <Link to="/" className={`flex items-center gap-2 text-xl md:text-2xl font-display font-bold tracking-tighter ${getNavColor()}`}>
+                    <Link to="/" className={`flex items-center gap-2 text-xl md:text-2xl font-title font-bold tracking-tighter ${getNavColor()}`}>
                         <img src="/logo.png" alt="VIP Catering Logo" className="h-8 md:h-12 w-auto object-contain drop-shadow-sm" />
                         <span className="inline-block drop-shadow-md">VIP <span className="text-luxury-shimmer">CATERING</span></span>
                     </Link>
@@ -68,13 +68,15 @@ const Navbar = () => {
                             </Link>
                         </motion.div>
                     ))}
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="btn-luxury-shimmer px-7 py-2.5 text-sm"
-                    >
-                        Book Now
-                    </motion.button>
+                    <Link to="/contact">
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="btn-luxury-shimmer px-7 py-2.5 text-sm"
+                        >
+                            Book Now
+                        </motion.button>
+                    </Link>
                 </div>
 
 

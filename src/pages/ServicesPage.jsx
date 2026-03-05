@@ -57,7 +57,7 @@ const ServicesPage = () => {
                 />
             </div>
             <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-display font-bold text-[#1A1A1A] mb-3">{title}</h3>
+                <h3 className="text-2xl  font-bold text-[#1A1A1A] mb-3">{title}</h3>
                 <p className="text-[#4A4A4A] line-clamp-2 mb-8 leading-relaxed font-light">
                     {description[0]}
                 </p>
@@ -95,7 +95,7 @@ const ServicesPage = () => {
                         className="text-center mb-16"
                     >
                         <motion.span variants={fadeInUp} className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">The VIP Standard</motion.span>
-                        <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-display font-bold text-accent-dark">Why Choose Us</motion.h2>
+                        <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl  font-bold text-accent-dark">Why Choose Us</motion.h2>
                     </motion.div>
 
                     <motion.div
@@ -124,7 +124,7 @@ const ServicesPage = () => {
                                 <div className="w-14 h-14 rounded-2xl bg-[#141414] shadow-luxury-glow flex items-center justify-center text-primary mb-6 border border-[#C9A227]/30">
                                     <reason.icon size={28} />
                                 </div>
-                                <h3 className="text-2xl font-display font-bold text-accent-dark mb-4">{reason.title}</h3>
+                                <h3 className="text-2xl  font-bold text-accent-dark mb-4">{reason.title}</h3>
                                 <p className="text-gray-300 leading-relaxed font-light">{reason.desc}</p>
                             </motion.div>
                         ))}
@@ -190,7 +190,7 @@ const ServicesPage = () => {
                     }}
                     className="relative z-10 text-center px-6 max-w-4xl mx-auto"
                 >
-                    <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-display font-bold text-accent-dark mb-6">
+                    <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl  font-bold text-accent-dark mb-6">
                         Our Catering <span className="text-primary italic">Services</span>
                     </motion.h1>
                     <motion.p variants={fadeInUp} className="text-xl text-gray-300 max-w-2xl mx-auto font-light">
@@ -235,7 +235,7 @@ const ServicesPage = () => {
                         }}
                         className="text-center max-w-4xl mx-auto"
                     >
-                        <h2 className="text-4xl md:text-7xl font-display font-bold text-accent-dark mb-10 leading-tight">
+                        <h2 className="text-4xl md:text-7xl  font-bold text-accent-dark mb-10 leading-tight">
                             Let’s Plan Your <br /> <span className="text-primary">Next Event</span>
                         </h2>
                         <Link to="/contact">

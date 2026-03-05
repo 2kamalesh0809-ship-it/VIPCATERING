@@ -72,7 +72,7 @@ const Services = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-50px" }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-4xl md:text-5xl lg:text-7xl font-display font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-4 lg:mb-6 max-w-4xl"
+                        className="text-4xl md:text-5xl lg:text-7xl  font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-4 lg:mb-6 max-w-4xl"
                     >
                         Choose Our Catering Services
                     </motion.h2>
@@ -108,7 +108,7 @@ const Services = () => {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/90 via-[#111111]/20 to-transparent transition-opacity duration-[400ms] group-hover:bg-[#111111]/40" />
                                     </div>
-                                    <h3 className="relative z-10 text-white font-display font-bold text-sm sm:text-lg md:text-2xl p-3 sm:p-6 lg:p-8 transition-transform duration-[400ms]">
+                                    <h3 className="relative z-10 text-white  font-bold text-sm sm:text-lg md:text-2xl p-3 sm:p-6 lg:p-8 transition-transform duration-[400ms]">
                                         {service.title}
                                     </h3>
                                 </motion.div>
@@ -145,7 +145,7 @@ const Services = () => {
                                 <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-luxury-gold animate-shimmer backdrop-blur-md text-white shadow-luxury-glow text-[10px] font-bold uppercase tracking-widest rounded-full mb-3 sm:mb-4 bg-[length:200%_auto]">
                                     Featured
                                 </span>
-                                <h3 className="text-white font-display font-bold text-2xl sm:text-3xl md:text-5xl leading-tight">
+                                <h3 className="text-white  font-bold text-2xl sm:text-3xl md:text-5xl leading-tight">
                                     {featuredService.title}
                                 </h3>
                             </div>

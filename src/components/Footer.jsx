@@ -18,7 +18,7 @@ const Footer = () => {
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                     <div className="col-span-1 lg:col-span-1">
-                        <Link to="/" className="flex items-center gap-3 text-2xl font-display font-bold mb-6 block" id="footer-logo">
+                        <Link to="/" className="flex items-center gap-3 text-2xl font-title font-bold mb-6 block" id="footer-logo">
                             <img src="/logo.png" alt="VIP Catering Logo" className="h-10 w-auto object-contain" />
                             <span>VIP <span className="text-luxury-shimmer">CATERING</span></span>
                         </Link>

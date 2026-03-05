@@ -17,7 +17,7 @@ const CTASection = () => {
                     <div className="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -ml-48 -mb-48" />
 
                     <div className="relative z-10 max-w-4xl mx-auto">
-                        <h2 className="text-4xl md:text-7xl font-display font-bold text-white mb-8 leading-tight">
+                        <h2 className="text-4xl md:text-7xl  font-bold text-white mb-8 leading-tight">
                             Ready to elevate your <span className="text-luxury-shimmer italic inline-block">next event?</span>
                         </h2>
                         <p className="text-white/60 text-lg md:text-xl mb-12 max-w-2xl mx-auto">

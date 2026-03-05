@@ -12,6 +12,8 @@ import GalleryPage from './pages/GalleryPage';
 import EventsPage from './pages/EventsPage';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import QuotationPage from './pages/QuotationPage';
+import SubmissionSuccess from './pages/SubmissionSuccess';
 import MobileBottomNav from './components/MobileBottomNav';
 
 // Scroll to top on route change
@@ -36,15 +38,15 @@ const ParallaxBackground = () => {
       {/* Layer 1 & 2: Background Image with blur, scaling, and parallax */}
       <motion.div
         style={{ y }}
-        className="absolute inset-x-0 -top-[20%] h-[140%] scale-[1.15] md:scale-[1.1]"
+        className="absolute inset-x-0 -top-[20%] h-[140%] scale-[1.05] will-change-transform"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2.5, ease: "easeInOut" }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
       >
         <img
           src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070"
           alt="Luxury VIP Catering Atmosphere"
-          className="w-full h-full object-cover blur-[8px] md:blur-[15px] brightness-[0.85] saturate-[1.1] will-change-transform"
+          className="w-full h-full object-cover brightness-[0.4] saturate-[1.1]"
         />
       </motion.div>
 
@@ -84,6 +86,8 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/events" element={<EventsPage />} />
+            <Route path="/quotation" element={<QuotationPage />} />
+            <Route path="/submission-success" element={<SubmissionSuccess />} />
 
             {/* Private Admin Routes */}
             <Route path="/admin" element={<AdminLogin />} />

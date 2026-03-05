@@ -22,12 +22,12 @@ const IntroAnimation = () => {
     // Create a fixed array of particles to avoid hydration mismatches, even though it's client side
     // It's cleaner to precompute random positions
     const [particles] = useState(() =>
-        Array.from({ length: 25 }).map(() => ({
+        Array.from({ length: 15 }).map(() => ({
             initialX: Math.random() * 100,
             initialY: Math.random() * 100,
-            duration: 3 + Math.random() * 4,
+            duration: 4 + Math.random() * 4,
             delay: Math.random() * 2,
-            size: Math.random() * 3 + 1.5
+            size: Math.random() * 2 + 1
         }))
     );
 
@@ -43,10 +43,10 @@ const IntroAnimation = () => {
                     {/* Background glow & noise */}
                     <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.7 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 2.5, ease: "easeOut" }}
-                            className="w-[90vw] h-[90vw] md:w-[60vw] md:h-[60vw] bg-[#C9A227]/15 rounded-full blur-[100px] md:blur-[160px]"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 2.5 }}
+                            className="w-[90vw] h-[90vw] md:w-[60vw] md:h-[60vw] bg-[#C9A227]/10 rounded-full blur-[80px]"
                         />
                     </div>
                     <div className="noise-overlay opacity-[0.05] z-0 pointer-events-none"></div>
@@ -84,7 +84,7 @@ const IntroAnimation = () => {
                                 initial={{ opacity: 0, filter: "blur(12px)", scale: 1.2 }}
                                 animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
                                 transition={{ duration: 1.4, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-bold tracking-tight drop-shadow-[0_0_20px_rgba(239,200,58,0.3)]"
+                                className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl  font-bold tracking-tight drop-shadow-[0_0_20px_rgba(239,200,58,0.3)]"
                             >
                                 {/* Gold Sweep passing across the logo component */}
                                 <motion.span

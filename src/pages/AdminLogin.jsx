@@ -53,7 +53,7 @@ const AdminLogin = () => {
                 </div>
 
                 <div className="text-center mb-8">
-                    <h1 className="text-3xl font-display font-bold text-white mb-2">Admin Portal</h1>
+                    <h1 className="text-3xl  font-bold text-white mb-2">Admin Portal</h1>
                     <p className="text-gray-400">Secure access to VIP Catering Systems</p>
                 </div>
 

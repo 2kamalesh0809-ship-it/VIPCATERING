@@ -71,7 +71,7 @@ const Gallery = () => {
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            className="text-4xl md:text-6xl font-display font-bold text-luxury-shimmer text-shadow-premium tracking-tight"
+                            className="text-4xl md:text-6xl  font-bold text-luxury-shimmer text-shadow-premium tracking-tight"
                         >
                             Our Experience Reel
                         </motion.h2>
@@ -114,7 +114,7 @@ const Gallery = () => {
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-80"></div>
                                 <div className="absolute inset-0 p-8 flex flex-col justify-end z-10">
                                     <span className="text-luxury-shimmer text-shadow-premium text-xs md:text-sm font-bold uppercase tracking-widest mb-1 md:mb-2">{item.category}</span>
-                                    <h3 className="text-xl md:text-3xl font-display font-bold text-white">{item.title}</h3>
+                                    <h3 className="text-xl md:text-3xl  font-bold text-white">{item.title}</h3>
                                 </div>
                             </div>
                         </SwiperSlide>

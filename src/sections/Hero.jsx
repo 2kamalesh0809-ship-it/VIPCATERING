@@ -31,7 +31,7 @@ const Hero = () => {
                     <span className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-widest text-primary uppercase bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                         Premium Catering Chennai
                     </span>
-                    <h1 className="text-5xl md:text-8xl font-display font-bold text-white mb-6 leading-tight">
+                    <h1 className="text-5xl md:text-8xl font-bold text-white mb-6 leading-tight">
                         Modern Catering <br /> <span className="text-primary italic">Experiences</span>
                     </h1>
                     <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">

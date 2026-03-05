@@ -44,7 +44,7 @@ const FeaturedEvents = () => {
                             viewport={{ once: true }}
                         >
                             <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Signature Events</span>
-                            <h2 className="text-4xl md:text-6xl font-display font-bold text-luxury-shimmer text-shadow-premium mb-8 leading-tight uppercase">
+                            <h2 className="text-4xl md:text-6xl  font-bold text-luxury-shimmer text-shadow-premium mb-8 leading-tight uppercase">
                                 Crafting Moments that <br /> Stay Forever.
                             </h2>
                             <p className="text-gray-300 text-lg mb-8 leading-relaxed">

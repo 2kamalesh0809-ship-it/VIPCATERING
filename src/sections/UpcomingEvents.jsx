@@ -112,7 +112,7 @@ const UpcomingEvents = () => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-4xl md:text-6xl font-display font-bold text-luxury-shimmer text-shadow-premium tracking-tight leading-tight">
+                        <h2 className="text-4xl md:text-6xl  font-bold text-luxury-shimmer text-shadow-premium tracking-tight leading-tight">
                             Upcoming <br className="md:hidden" /><span className="inline-block">Events</span>
                         </h2>
                     </motion.div>
@@ -184,7 +184,7 @@ const UpcomingEvents = () => {
                                                 {event.price}
                                             </span>
                                         </div>
-                                        <h3 className="text-xl font-display font-bold text-accent-dark leading-snug group-hover/card:text-[#C9A227] transition-colors pt-2">
+                                        <h3 className="text-xl  font-bold text-accent-dark leading-snug group-hover/card:text-[#C9A227] transition-colors pt-2">
                                             {event.title}
                                         </h3>
                                         <div className="flex items-center gap-1.5 text-gray-300 text-sm font-medium mt-1">

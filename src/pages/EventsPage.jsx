@@ -88,7 +88,7 @@ const EventCard = ({ event, isSmall = false }) => {
             {/* Content Container */}
             <div className="p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-start gap-4 mb-3">
-                    <h3 className="text-xl font-display font-bold text-accent-dark leading-tight group-hover:text-primary transition-colors duration-300 relative inline-block">
+                    <h3 className="text-xl  font-bold text-accent-dark leading-tight group-hover:text-primary transition-colors duration-300 relative inline-block">
                         {event.title}
                         <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
                     </h3>
@@ -172,7 +172,7 @@ const EventsPage = () => {
                     <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
                         Catered Experiences
                     </span>
-                    <h1 className="text-5xl md:text-7xl font-display font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-6">
+                    <h1 className="text-5xl md:text-7xl  font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-6">
                         Our Events
                     </h1>
                     <p className="text-lg md:text-xl text-gray-300 font-medium">
@@ -184,7 +184,7 @@ const EventsPage = () => {
             {/* 2) FEATURED EVENTS CAROUSEL */}
             <section className="mb-24 md:mb-32 overflow-hidden">
                 <div className="container mx-auto px-6 mb-8 flex items-end justify-between relative z-10">
-                    <h2 className="text-2xl md:text-3xl font-display font-bold text-accent-dark">
+                    <h2 className="text-2xl md:text-3xl  font-bold text-accent-dark">
                         Upcoming & Featured
                     </h2>
                 </div>

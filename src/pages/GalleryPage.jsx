@@ -75,7 +75,7 @@ const ReelCard = ({ videoUrl, thumbnailUrl, title, category }) => {
             {/* Overlay Details */}
             <div className="absolute inset-x-0 bottom-0 p-8 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none z-10">
                 <span className="text-primary font-bold text-xs uppercase tracking-widest mb-2 block">{category}</span>
-                <h3 className="text-xl font-display font-bold text-white mb-4 leading-tight">{title}</h3>
+                <h3 className="text-xl  font-bold text-white mb-4 leading-tight">{title}</h3>
                 <div className="flex items-center gap-2 text-white/60 text-sm">
                     <PlayCircle size={16} className="text-primary" />
                     <span>Experience Reel</span>
@@ -105,7 +105,7 @@ const MasonryItem = ({ imageUrl, size, title }) => (
         />
         <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center border-0 group-hover:border-4 border-primary/40 rounded-3xl">
             <div className="text-center px-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <h4 className="text-white font-display font-bold text-xl drop-shadow-lg">{title}</h4>
+                <h4 className="text-white  font-bold text-xl drop-shadow-lg">{title}</h4>
             </div>
         </div>
     </motion.div>
@@ -243,7 +243,7 @@ const GalleryPage = () => {
                     className="relative z-10 text-center px-6"
                 >
                     <span className="text-primary font-bold tracking-[0.4em] uppercase text-xs mb-4 block">Our Visual Journey</span>
-                    <h1 className="text-5xl md:text-8xl font-display font-bold text-white mb-6">
+                    <h1 className="text-5xl md:text-8xl  font-bold text-white mb-6">
                         Moments We've <span className="text-primary italic">Crafted</span>
                     </h1>
                     <p className="text-xl text-white/70 max-w-2xl mx-auto font-light">
@@ -258,7 +258,7 @@ const GalleryPage = () => {
                     <div className="flex items-end justify-between mb-16">
                         <div>
                             <span className="text-primary font-bold tracking-widest text-sm uppercase mb-4 block">Trending Now</span>
-                            <h2 className="text-4xl md:text-6xl font-display font-bold text-accent-dark">Experience Reels</h2>
+                            <h2 className="text-4xl md:text-6xl  font-bold text-accent-dark">Experience Reels</h2>
                         </div>
                         <div className="hidden md:flex gap-4">
                             <Instagram className="text-primary" size={24} />
@@ -278,7 +278,7 @@ const GalleryPage = () => {
             <section className="py-12 md:py-16 px-6 relative z-10">
                 <div className="container mx-auto">
                     <div className="text-center mb-20">
-                        <h2 className="text-4xl md:text-6xl font-display font-bold text-luxury-shimmer text-shadow-premium">The Art of Catering</h2>
+                        <h2 className="text-4xl md:text-6xl  font-bold text-luxury-shimmer text-shadow-premium">The Art of Catering</h2>
                         <p className="text-gray-400 mt-4 max-w-xl mx-auto">Selected snapshots from our most iconic events across Chennai.</p>
                     </div>
                     <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
@@ -295,7 +295,7 @@ const GalleryPage = () => {
                 <div className="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent z-20" />
                 <div className="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent z-20" />
                 <div className="mb-12 px-6">
-                    <h2 className="text-luxury-shimmer text-shadow-premium font-display font-bold text-3xl">Quick Clips</h2>
+                    <h2 className="text-luxury-shimmer text-shadow-premium  font-bold text-3xl">Quick Clips</h2>
                 </div>
 
                 <div className="flex gap-4 animate-scroll whitespace-nowrap w-max">
@@ -357,7 +357,7 @@ const GalleryPage = () => {
                         viewport={{ once: true }}
                         className="max-w-4xl mx-auto"
                     >
-                        <h2 className="text-5xl md:text-8xl font-display font-bold text-white mb-10 leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                        <h2 className="text-5xl md:text-8xl  font-bold text-white mb-10 leading-tight drop-shadow-[0_0_20px_rgba(255,255,255,0.1)]">
                             Ready to Create <br /> <span className="text-luxury-shimmer italic">Your Event?</span>
                         </h2>
                         <motion.button
