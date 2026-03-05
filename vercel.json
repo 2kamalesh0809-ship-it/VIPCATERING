@@ -1,11 +1,4 @@
 {
-    "redirects": [
-        {
-            "source": "/",
-            "destination": "/admin",
-            "permanent": true
-        }
-    ],
     "rewrites": [
         {
             "source": "/(.*)",
