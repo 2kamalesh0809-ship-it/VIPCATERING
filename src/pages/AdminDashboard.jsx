@@ -167,7 +167,7 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0A0A0A] text-white p-6 relative z-[100] overflow-x-hidden">
+        <div className="min-h-screen bg-slate-50 text-slate-900 p-6 relative z-[100] overflow-x-hidden">
             {/* Toast Notification */}
             <AnimatePresence>
                 {toast && (
@@ -175,7 +175,7 @@ const AdminDashboard = () => {
                         initial={{ opacity: 0, y: -50, x: '-50%' }}
                         animate={{ opacity: 1, y: 20, x: '-50%' }}
                         exit={{ opacity: 0, y: -50, x: '-50%' }}
-                        className={`fixed top-4 left-1/2 z-[200] px-6 py-3 rounded-xl font-bold shadow-2xl flex items-center gap-3 backdrop-blur-md border ${toast.type === 'error' ? 'bg-red-500/20 border-red-500/50 text-red-500' : 'bg-[#C9A227]/20 border-[#C9A227]/50 text-[#C9A227]'
+                        className={`fixed top-4 left-1/2 z-[200] px-6 py-3 rounded-xl font-bold shadow-2xl flex items-center gap-3 backdrop-blur-md border ${toast.type === 'error' ? 'bg-red-50 border-red-200 text-red-600' : 'bg-white border-[#C9A227]/30 text-[#C9A227]'
                             }`}
                     >
                         {toast.type === 'error' ? <X size={20} /> : <Check size={20} />}
@@ -185,12 +185,12 @@ const AdminDashboard = () => {
             </AnimatePresence>
 
             <div className="max-w-6xl mx-auto">
-                <div className="flex justify-between items-center mb-12 py-6 border-b border-gray-800">
+                <div className="flex justify-between items-center mb-12 py-6 border-b border-slate-200">
                     <div>
-                        <h1 className="text-3xl font-bold tracking-tight">Admin Dashboard</h1>
-                        <p className="text-gray-400 mt-2">Manage your luxury catering events.</p>
+                        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Admin Dashboard</h1>
+                        <p className="text-slate-500 mt-2">Manage your luxury catering events.</p>
                     </div>
-                    <button onClick={handleLogout} className="flex items-center gap-2 px-6 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-xl transition-all font-semibold border border-red-500/20">
+                    <button onClick={handleLogout} className="flex items-center gap-2 px-6 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 rounded-xl transition-all font-semibold border border-red-100">
                         <LogOut size={18} /> Logout Admin
                     </button>
                 </div>
@@ -198,9 +198,9 @@ const AdminDashboard = () => {
                 {!showForm ? (
                     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                         <div className="flex justify-between items-center mb-8">
-                            <h2 className="text-2xl font-bold flex items-center gap-3">
+                            <h2 className="text-2xl font-bold flex items-center gap-3 text-slate-900">
                                 <Calendar className="text-[#C9A227]" />
-                                <span>Live Events <span className="text-sm font-normal text-gray-500 ml-2">({events.length})</span></span>
+                                <span>Live Events <span className="text-sm font-normal text-slate-400 ml-2">({events.length})</span></span>
                             </h2>
                             <button
                                 onClick={() => { setShowForm(true); setCurrentEvent({}); setIsEditing(false); window.scrollTo(0, 0); }}
@@ -215,13 +215,13 @@ const AdminDashboard = () => {
                                 <motion.div
                                     key={ev.id}
                                     layoutId={`card-${ev.id}`}
-                                    className="bg-[#141414] rounded-2xl border border-gray-800 overflow-hidden group hover:border-[#C9A227]/30 transition-all duration-300 shadow-xl"
+                                    className="bg-white rounded-2xl border border-slate-200 overflow-hidden group hover:border-[#C9A227]/30 transition-all duration-300 shadow-xl"
                                 >
-                                    <div className="h-56 bg-[#0F0F0F] relative overflow-hidden">
+                                    <div className="h-56 bg-slate-100 relative overflow-hidden">
                                         {ev.imageUrl ? (
-                                            <img src={ev.imageUrl} alt={ev.title} className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-transform duration-700" />
+                                            <img src={ev.imageUrl} alt={ev.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                                         ) : (
-                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-700">
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-300">
                                                 <ImageIcon size={48} className="mb-2 opacity-50" />
                                                 <span className="text-xs uppercase tracking-widest">No Image</span>
                                             </div>
@@ -241,7 +241,7 @@ const AdminDashboard = () => {
                                             </button>
                                         </div>
                                         {ev.price && (
-                                            <div className="absolute bottom-4 left-4 inline-block px-3 py-1 bg-black/60 backdrop-blur-md rounded-lg text-[#C9A227] text-sm font-bold border border-[#C9A227]/30">
+                                            <div className="absolute bottom-4 left-4 inline-block px-3 py-1 bg-white/80 backdrop-blur-md rounded-lg text-[#C9A227] text-sm font-bold border border-[#C9A227]/20">
                                                 ₹{ev.price}
                                             </div>
                                         )}
@@ -251,22 +251,22 @@ const AdminDashboard = () => {
                                             <span className="px-2 py-0.5 bg-[#C9A227]/10 text-[#C9A227] text-[10px] font-bold uppercase tracking-widest rounded border border-[#C9A227]/20">
                                                 {ev.category}
                                             </span>
-                                            <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">•</span>
-                                            <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest">{ev.date}</span>
+                                            <span className="text-slate-300 text-[10px] font-bold uppercase tracking-widest">•</span>
+                                            <span className="text-slate-400 text-[10px] font-bold uppercase tracking-widest">{ev.date}</span>
                                         </div>
-                                        <h3 className="text-xl font-bold mb-2 group-hover:text-[#C9A227] transition-colors">{ev.title}</h3>
-                                        <p className="text-gray-400 text-sm line-clamp-2 leading-relaxed">{ev.desc}</p>
+                                        <h3 className="text-xl font-bold mb-2 text-slate-900 group-hover:text-[#C9A227] transition-colors">{ev.title}</h3>
+                                        <p className="text-slate-500 text-sm line-clamp-2 leading-relaxed">{ev.desc}</p>
                                     </div>
                                 </motion.div>
                             ))}
 
                             {events.length === 0 && !loading && (
-                                <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-24 bg-[#0F0F0F] rounded-3xl border border-gray-800 border-dashed">
-                                    <div className="w-20 h-20 bg-gray-900 rounded-full flex items-center justify-center mx-auto mb-6">
-                                        <Calendar className="text-gray-700" size={40} />
+                                <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-24 bg-white rounded-3xl border border-slate-200 border-dashed">
+                                    <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <Calendar className="text-slate-300" size={40} />
                                     </div>
-                                    <h3 className="text-2xl text-gray-400 font-bold mb-2">Portfolio is Empty</h3>
-                                    <p className="text-gray-600 max-w-xs mx-auto mb-8">Ready to showcase your gold standard of taste? Start by adding your first catering event.</p>
+                                    <h3 className="text-2xl text-slate-400 font-bold mb-2">Portfolio is Empty</h3>
+                                    <p className="text-slate-500 max-w-xs mx-auto mb-8">Ready to showcase your gold standard of taste? Start by adding your first catering event.</p>
                                     <button
                                         onClick={() => setShowForm(true)}
                                         className="bg-[#C19200]/10 text-[#C19200] border border-[#C19200]/30 px-8 py-3 rounded-xl font-bold hover:bg-[#C19200]/20 transition-all"
@@ -279,7 +279,7 @@ const AdminDashboard = () => {
                             {loading && (
                                 <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-32">
                                     <Loader2 className="animate-spin text-[#C9A227] mx-auto mb-4" size={48} />
-                                    <p className="text-gray-400 font-bold tracking-widest uppercase text-xs">Accessing Secure Database...</p>
+                                    <p className="text-slate-400 font-bold tracking-widest uppercase text-xs">Accessing Secure Database...</p>
                                 </div>
                             )}
                         </div>
@@ -288,48 +288,48 @@ const AdminDashboard = () => {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="max-w-3xl mx-auto bg-[#141414] p-8 md:p-10 rounded-3xl border border-gray-800 shadow-2xl relative"
+                        className="max-w-3xl mx-auto bg-white p-8 md:p-10 rounded-3xl border border-slate-100 shadow-2xl relative"
                     >
                         <button
                             onClick={() => setShowForm(false)}
-                            className="absolute top-6 right-6 p-2 text-gray-500 hover:text-white transition-colors"
+                            className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-900 transition-colors"
                         >
                             <X size={24} />
                         </button>
 
-                        <h2 className="text-2xl font-bold mb-2">{isEditing ? 'Edit Event Details' : 'Design New Event'}</h2>
-                        <p className="text-gray-500 mb-10 text-sm">Fill in the exquisite details of your premium catering service.</p>
+                        <h2 className="text-2xl font-bold mb-2 text-slate-900">{isEditing ? 'Edit Event Details' : 'Design New Event'}</h2>
+                        <p className="text-slate-500 mb-10 text-sm">Fill in the exquisite details of your premium catering service.</p>
 
                         <form onSubmit={handleSave} className="space-y-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="group">
-                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 group-focus-within:text-[#C9A227] transition-colors">Event Title</label>
+                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 group-focus-within:text-[#C9A227] transition-colors">Event Title</label>
                                     <input
                                         type="text" required
                                         value={currentEvent?.title || ''}
                                         onChange={e => setCurrentEvent({ ...currentEvent, title: e.target.value })}
-                                        className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-gray-800 focus:border-[#C9A227] outline-none transition-all placeholder:text-gray-700"
+                                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:border-[#C9A227] outline-none transition-all placeholder:text-slate-400"
                                         placeholder="E.g. Royal Wedding Reception"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Event Date</label>
+                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Event Date</label>
                                     <input
                                         type="date" required
                                         value={currentEvent?.date || ''}
                                         onChange={e => setCurrentEvent({ ...currentEvent, date: e.target.value })}
-                                        className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-gray-800 focus:border-[#C9A227] outline-none text-white [color-scheme:dark] transition-all"
+                                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 focus:border-[#C9A227] outline-none text-slate-900 transition-all"
                                     />
                                 </div>
                             </div>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Category</label>
+                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Category</label>
                                     <select
                                         value={currentEvent?.category || ''}
                                         onChange={e => setCurrentEvent({ ...currentEvent, category: e.target.value })}
-                                        className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-gray-800 focus:border-[#C9A227] outline-none appearance-none transition-all cursor-pointer"
+                                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:border-[#C9A227] outline-none appearance-none transition-all cursor-pointer"
                                         required
                                     >
                                         <option value="">Select Category...</option>
@@ -341,12 +341,12 @@ const AdminDashboard = () => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Starting Price (₹)</label>
+                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Starting Price (₹)</label>
                                     <input
                                         type="text"
                                         value={currentEvent?.price || ''}
                                         onChange={e => setCurrentEvent({ ...currentEvent, price: e.target.value })}
-                                        className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-gray-800 focus:border-[#C9A227] outline-none transition-all placeholder:text-gray-700"
+                                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:border-[#C9A227] outline-none transition-all placeholder:text-slate-400"
                                         placeholder="E.g. 1,500/plate"
                                     />
                                 </div>
@@ -354,19 +354,19 @@ const AdminDashboard = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div>
-                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3 group-focus-within:text-[#C9A227] transition-colors">Location</label>
+                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3 group-focus-within:text-[#C9A227] transition-colors">Location</label>
                                     <input
                                         type="text" required
                                         value={currentEvent?.location || ''}
                                         onChange={e => setCurrentEvent({ ...currentEvent, location: e.target.value })}
-                                        className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-gray-800 focus:border-[#C9A227] outline-none transition-all placeholder:text-gray-700"
+                                        className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:border-[#C9A227] outline-none transition-all placeholder:text-slate-400"
                                         placeholder="E.g. ITC Grand Chola, Chennai"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Exquisite Visual (Image)</label>
+                                    <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Exquisite Visual (Image)</label>
                                     <div className="relative">
-                                        <div className={`w-full h-44 rounded-2xl bg-[#0A0A0A] border-2 border-dashed ${imagePreview ? 'border-[#C9A227]/50' : 'border-gray-800'} flex flex-col items-center justify-center transition-all hover:border-[#C9A227]/30 overflow-hidden relative group/upload`}>
+                                        <div className={`w-full h-44 rounded-2xl bg-slate-50 border-2 border-dashed ${imagePreview ? 'border-[#C9A227]/50' : 'border-slate-200'} flex flex-col items-center justify-center transition-all hover:border-[#C9A227]/30 overflow-hidden relative group/upload`}>
                                             {imagePreview ? (
                                                 <div className="relative w-full h-full group/preview">
                                                     <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
@@ -382,10 +382,10 @@ const AdminDashboard = () => {
                                                 </div>
                                             ) : (
                                                 <>
-                                                    <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center mb-3 group-hover/upload:bg-gray-800 transition-colors">
-                                                        <Upload className="text-gray-500" size={24} />
+                                                    <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-3 group-hover/upload:bg-slate-100 transition-colors shadow-sm">
+                                                        <Upload className="text-slate-400" size={24} />
                                                     </div>
-                                                    <p className="text-[10px] font-bold text-gray-600 uppercase tracking-widest">Click or Drop High-Res Photo</p>
+                                                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Click or Drop High-Res Photo</p>
                                                     <p className="text-[9px] text-[#C9A227] mt-1 opacity-60 uppercase font-bold tracking-[2px]">Max 5MB</p>
                                                 </>
                                             )}
@@ -397,17 +397,17 @@ const AdminDashboard = () => {
                                             />
                                         </div>
                                         {isUploading && (
-                                            <div className="absolute inset-0 bg-black/90 rounded-2xl flex flex-col items-center justify-center z-20 backdrop-blur-md">
+                                            <div className="absolute inset-0 bg-white/90 rounded-2xl flex flex-col items-center justify-center z-20 backdrop-blur-md">
                                                 <div className="relative mb-4">
                                                     <Loader2 className="animate-spin text-[#C9A227]" size={48} />
-                                                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-black text-white">
+                                                    <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-black text-[#C9A227]">
                                                         {Math.round(uploadProgress)}%
                                                     </span>
                                                 </div>
-                                                <div className="w-48 bg-gray-800 h-1.5 rounded-full overflow-hidden border border-white/5">
-                                                    <div className="bg-luxury-gold h-full transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
+                                                <div className="w-48 bg-slate-100 h-1.5 rounded-full overflow-hidden border border-slate-200">
+                                                    <div className="bg-[#C9A227] h-full transition-all duration-300" style={{ width: `${uploadProgress}%` }} />
                                                 </div>
-                                                <p className="text-[10px] text-white/50 mt-4 font-bold uppercase tracking-widest animate-pulse">Uploading to Cloud Storage...</p>
+                                                <p className="text-[10px] text-slate-400 mt-4 font-bold uppercase tracking-widest animate-pulse">Uploading to Cloud Storage...</p>
                                             </div>
                                         )}
                                     </div>
@@ -415,21 +415,21 @@ const AdminDashboard = () => {
                             </div>
 
                             <div>
-                                <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">Event Narrative (Description)</label>
+                                <label className="block text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Event Narrative (Description)</label>
                                 <textarea
                                     rows="4" required
                                     value={currentEvent?.desc || ''}
                                     onChange={e => setCurrentEvent({ ...currentEvent, desc: e.target.value })}
-                                    className="w-full px-5 py-4 rounded-xl bg-[#0A0A0A] border border-gray-800 focus:border-[#C9A227] outline-none transition-all placeholder:text-gray-700 leading-relaxed"
+                                    className="w-full px-5 py-4 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 focus:border-[#C9A227] outline-none transition-all placeholder:text-slate-400 leading-relaxed"
                                     placeholder="Describe the atmosphere, menu highlights, and the gold standard of taste provided..."
                                 />
                             </div>
 
-                            <div className="flex gap-4 pt-8 border-t border-gray-800/50">
+                            <div className="flex gap-4 pt-8 border-t border-slate-100">
                                 <button
                                     type="button"
                                     onClick={() => setShowForm(false)}
-                                    className="px-8 py-4 rounded-xl font-bold bg-[#1A1A1A] text-gray-400 hover:text-white hover:bg-gray-800 transition-all border border-gray-800/50"
+                                    className="px-8 py-4 rounded-xl font-bold bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-all border border-slate-200"
                                 >
                                     Discard
                                 </button>

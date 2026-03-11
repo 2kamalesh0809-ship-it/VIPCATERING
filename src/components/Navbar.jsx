@@ -44,9 +44,16 @@ const Navbar = () => {
                     animate={{ opacity: 1, x: 0 }}
                     className="flex items-center gap-2"
                 >
-                    <Link to="/" className={`flex items-center gap-2 text-xl md:text-2xl font-title font-bold tracking-tighter ${getNavColor()}`}>
-                        <img src="/logo.png" alt="VIP Catering Logo" className="h-8 md:h-12 w-auto object-contain drop-shadow-sm" />
-                        <span className="inline-block drop-shadow-md">VIP <span className="text-luxury-shimmer">CATERING</span></span>
+                    <Link to="/" className={`flex items-center gap-2 md:gap-3 group`} id="navbar-logo">
+                        <img src="/logo.png" alt="VIP Catering Logo" className="h-9 md:h-14 w-auto object-contain drop-shadow-sm transition-transform duration-300 group-hover:scale-105" />
+                        <div className="flex flex-col justify-center">
+                            <span className={`text-xl md:text-2xl font-title font-bold tracking-tight leading-none ${getNavColor()} drop-shadow-md`}>
+                                VIP <span className="text-luxury-shimmer">CATERING</span>
+                            </span>
+                            <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-[#C9A227] opacity-80 mt-1 leading-none">
+                                8 years of excellence
+                            </span>
+                        </div>
                     </Link>
                 </motion.div>
 

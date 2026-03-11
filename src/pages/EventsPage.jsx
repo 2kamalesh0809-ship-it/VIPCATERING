@@ -164,12 +164,12 @@ const EventsPage = () => {
     }, []);
 
     return (
-        <div className="bg-background-soft min-h-screen pt-32 relative overflow-hidden">
+        <div className="bg-background-soft min-h-screen pt-12 md:pt-32 relative">
             <div className="bg-luxury-blobs absolute inset-0 mix-blend-multiply opacity-50 z-0"></div>
             <div className="noise-overlay opacity-[0.03] z-0"></div>
 
             {/* 1) PAGE HEADER */}
-            <div className="container mx-auto px-6 mb-8 md:mb-24 relative z-10">
+            <div className="container mx-auto px-6 mb-4 md:mb-16 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ const EventsPage = () => {
             </div>
 
             {/* 2) FEATURED EVENTS CAROUSEL */}
-            <section className="mb-24 md:mb-32 mt-0 overflow-hidden">
+            <section className="mb-16 md:mb-32 mt-0 overflow-visible">
                 <div className="container mx-auto px-6 mb-8 flex items-end justify-between relative z-10">
                     <h2 className="text-2xl md:text-3xl  font-bold text-accent-dark">
                         Upcoming & Featured
@@ -213,7 +213,7 @@ const EventsPage = () => {
                                 1280: { slidesPerView: 4.2, spaceBetween: 24 },
                             }}
                             modules={[FreeMode]}
-                            className="!pb-12 !pr-6"
+                            className="!pb-16 !pr-6"
                         >
                             {events.slice(0, 5).map((event) => (
                                 <SwiperSlide key={`featured-${event.id}`} className="h-auto">
@@ -228,6 +228,7 @@ const EventsPage = () => {
 
 
             <CTASection />
+            <div className="h-20 md:hidden" />
         </div>
     );
 };

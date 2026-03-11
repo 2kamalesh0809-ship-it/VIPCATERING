@@ -18,9 +18,14 @@ const Footer = () => {
             <div className="container mx-auto px-6 relative z-10">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
                     <div className="col-span-1 lg:col-span-1">
-                        <Link to="/" className="flex items-center gap-3 text-2xl font-title font-bold mb-6 block" id="footer-logo">
-                            <img src="/logo.png" alt="VIP Catering Logo" className="h-10 w-auto object-contain" />
-                            <span>VIP <span className="text-luxury-shimmer">CATERING</span></span>
+                        <Link to="/" className="flex items-center gap-3 font-bold mb-6 block group" id="footer-logo">
+                            <img src="/logo.png" alt="VIP Catering Logo" className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105" />
+                            <div className="flex flex-col">
+                                <span className="text-2xl font-title leading-tight">VIP <span className="text-luxury-shimmer">CATERING</span></span>
+                                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C9A227] opacity-80 mt-1">
+                                    8 years of excellence
+                                </span>
+                            </div>
                         </Link>
                         <p className="text-gray-300 leading-relaxed mb-8">
                             Innovating the catering industry in Chennai with premium services and modern culinary experiences since 2016.
