@@ -15,6 +15,15 @@ import AdminDashboard from './pages/AdminDashboard';
 import QuotationPage from './pages/QuotationPage';
 import SubmissionSuccess from './pages/SubmissionSuccess';
 import MobileBottomNav from './components/MobileBottomNav';
+import WeddingCatering from './pages/services/WeddingCatering';
+import CorporateCatering from './pages/services/CorporateCatering';
+import BirthdayCatering from './pages/services/BirthdayCatering';
+import VegCatering from './pages/services/VegCatering';
+import EventCatering from './pages/services/EventCatering';
+import BlogPage from './pages/BlogPage';
+import WeddingIdeasBlog from './pages/blog/WeddingIdeasBlog';
+import CorporateMenuBlog from './pages/blog/CorporateMenuBlog';
+import ChooseCatererBlog from './pages/blog/ChooseCatererBlog';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -88,6 +97,19 @@ function App() {
             <Route path="/events" element={<EventsPage />} />
             <Route path="/quotation" element={<QuotationPage />} />
             <Route path="/submission-success" element={<SubmissionSuccess />} />
+
+            {/* SEO Service Pages */}
+            <Route path="/wedding-catering-chennai" element={<WeddingCatering />} />
+            <Route path="/corporate-catering-chennai" element={<CorporateCatering />} />
+            <Route path="/birthday-party-catering-chennai" element={<BirthdayCatering />} />
+            <Route path="/veg-catering-services-chennai" element={<VegCatering />} />
+            <Route path="/event-catering-services-chennai" element={<EventCatering />} />
+
+            {/* Blog Routes */}
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/wedding-catering-ideas-chennai" element={<WeddingIdeasBlog />} />
+            <Route path="/blog/corporate-catering-menu-guide" element={<CorporateMenuBlog />} />
+            <Route path="/blog/how-to-choose-best-caterer-chennai" element={<ChooseCatererBlog />} />
 
             {/* Private Admin Routes */}
             <Route path="/admin" element={<AdminLogin />} />

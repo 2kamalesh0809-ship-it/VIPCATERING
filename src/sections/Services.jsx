@@ -10,18 +10,26 @@ const Services = () => {
         {
             title: "Wedding Catering",
             image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000",
+            path: "/wedding-catering-chennai",
+            alt: "Luxury wedding catering services in Chennai"
         },
         {
             title: "Corporate Catering",
             image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1000",
+            path: "/corporate-catering-chennai",
+            alt: "Professional corporate catering in Chennai for business events"
         },
         {
             title: "Birthday Parties",
             image: "https://images.unsplash.com/photo-1530103043960-ef38714abb15?q=80&w=1000",
+            path: "/birthday-party-catering-chennai",
+            alt: "Best birthday party catering in Chennai with live stations"
         },
         {
             title: "Private Events",
             image: "https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=1000",
+            path: "/event-catering-services-chennai",
+            alt: "Premium event catering services for private parties in Chennai"
         }
     ];
 
@@ -91,7 +99,7 @@ const Services = () => {
                     {/* Left: 2x2 grid of service cards (Takes up 7 columns out of 12 on large screens) */}
                     <div className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-6 md:gap-8">
                         {smallServices.map((service, index) => (
-                            <Link to="/contact" key={index} className="block group">
+                            <Link to={service.path} key={index} className="block group">
                                 <motion.div
                                     custom={index}
                                     variants={cardVariants}
@@ -103,7 +111,7 @@ const Services = () => {
                                     <div className="absolute inset-0">
                                         <img
                                             src={service.image}
-                                            alt={service.title}
+                                            alt={service.alt}
                                             className="w-full h-full object-cover transform transition-transform duration-[600ms] ease-out group-hover:scale-105"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#111111]/90 via-[#111111]/20 to-transparent transition-opacity duration-[400ms] group-hover:bg-[#111111]/40" />
@@ -131,7 +139,7 @@ const Services = () => {
                                     <motion.img
                                         key={currentImageIndex}
                                         src={featuredService.images[currentImageIndex]}
-                                        alt={featuredService.title}
+                                        alt={`VIP Catering Chennai - Premium catering service excellence ${currentImageIndex + 1}`}
                                         initial={{ opacity: 0, scale: 1.1 }}
                                         animate={{ opacity: 1, scale: 1 }}
                                         exit={{ opacity: 0 }}

@@ -23,6 +23,7 @@ const Navbar = () => {
         { name: 'Menu', href: '/menu' },
         { name: 'Events', href: '/events' },
         { name: 'Gallery', href: '/gallery' },
+        { name: 'Blog', href: '/blog' },
         { name: 'Contact', href: '/contact' },
     ];
 

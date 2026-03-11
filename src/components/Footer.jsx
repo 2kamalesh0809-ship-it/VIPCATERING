@@ -9,6 +9,7 @@ const Footer = () => {
         { name: 'Menu', href: '/menu' },
         { name: 'Events', href: '/events' },
         { name: 'Gallery', href: '/gallery' },
+        { name: 'Blog', href: '/blog' },
         { name: 'Contact', href: '/contact' },
     ];
 
@@ -64,9 +65,15 @@ const Footer = () => {
                     <div>
                         <h4 className="font-bold text-lg mb-8">Our Services</h4>
                         <ul className="space-y-4">
-                            {['Wedding Catering', 'Corporate Events', 'Private Parties', 'Gala Dinners', 'Live Counters'].map((item) => (
-                                <li key={item}>
-                                    <a href="#" className="text-gray-300 hover:text-primary transition-colors">{item}</a>
+                            {[
+                                { name: 'Wedding Catering', href: '/wedding-catering-chennai' },
+                                { name: 'Corporate Catering', href: '/corporate-catering-chennai' },
+                                { name: 'Birthday Parties', href: '/birthday-party-catering-chennai' },
+                                { name: 'Veg Catering', href: '/veg-catering-services-chennai' },
+                                { name: 'Event Catering', href: '/event-catering-services-chennai' }
+                            ].map((item) => (
+                                <li key={item.name}>
+                                    <Link to={item.href} className="text-gray-300 hover:text-primary transition-colors">{item.name}</Link>
                                 </li>
                             ))}
                         </ul>

@@ -39,30 +39,35 @@ const ServicesPage = () => {
         }
     };
 
-    const ServiceCard = ({ title, description, image }) => (
-        <motion.div
-            variants={{
-                hidden: { opacity: 0, y: yOffset },
-                visible: { opacity: 1, y: 0, transition: { duration, ease: "easeOut" } }
-            }}
-            whileHover={{ y: -6, borderColor: "rgba(201, 162, 39, 0.6)" }}
-            whileTap={{ scale: 0.98 }}
-            className="group bg-[#FDFBF7] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#C9A227]/20 transition-all duration-300 flex flex-col cursor-pointer"
-        >
-            <div className="relative h-64 sm:h-72 overflow-hidden bg-gray-100">
-                <img
-                    src={image}
-                    alt={title}
-                    className="w-full h-full object-cover transition-transform duration-[600ms] ease-out md:group-hover:scale-105"
-                />
-            </div>
-            <div className="p-8 flex flex-col flex-grow">
-                <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3">{title}</h3>
-                <p className="text-[#4A4A4A] line-clamp-2 md:line-clamp-none leading-relaxed font-light">
-                    {description[0]}
-                </p>
-            </div>
-        </motion.div>
+    const ServiceCard = ({ title, description, image, path, alt }) => (
+        <Link to={path} className="block group">
+            <motion.div
+                variants={{
+                    hidden: { opacity: 0, y: yOffset },
+                    visible: { opacity: 1, y: 0, transition: { duration, ease: "easeOut" } }
+                }}
+                whileHover={{ y: -6, borderColor: "rgba(201, 162, 39, 0.6)" }}
+                whileTap={{ scale: 0.98 }}
+                className="bg-[#FDFBF7] rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#C9A227]/20 transition-all duration-300 flex flex-col cursor-pointer h-full"
+            >
+                <div className="relative h-64 sm:h-72 overflow-hidden bg-gray-100">
+                    <img
+                        src={image}
+                        alt={alt || title}
+                        className="w-full h-full object-cover transition-transform duration-[600ms] ease-out md:group-hover:scale-105"
+                    />
+                </div>
+                <div className="p-8 flex flex-col flex-grow">
+                    <h3 className="text-2xl font-bold text-[#1A1A1A] mb-3 group-hover:text-primary transition-colors">{title}</h3>
+                    <p className="text-[#4A4A4A] line-clamp-2 md:line-clamp-none leading-relaxed font-light">
+                        {description[0]}
+                    </p>
+                    <div className="mt-6 flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider">
+                        Learn More <ArrowRight size={16} />
+                    </div>
+                </div>
+            </motion.div>
+        </Link>
     );
 
     const WhyChooseUs = () => {
@@ -136,6 +141,8 @@ const ServicesPage = () => {
             ],
             highlights: ["Royal Buffet Service", "Live Artisan Counters", "Customized Menu Design", "Traditional Seating Service"],
             image: "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070",
+            path: "/wedding-catering-chennai",
+            alt: "Best wedding catering services in Chennai - Luxury Setup",
             reverse: false
         },
         {
@@ -146,6 +153,8 @@ const ServicesPage = () => {
             ],
             highlights: ["Executive Bento Boxes", "Networking Cocktails", "Grand Gala Dinners", "Daily Office Lunches"],
             image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069",
+            path: "/corporate-catering-chennai",
+            alt: "Professional corporate catering services in Chennai",
             reverse: true
         },
         {
@@ -156,6 +165,8 @@ const ServicesPage = () => {
             ],
             highlights: ["Themed Food Concepts", "Interactive Live Stations", "Bespoke Cake Design", "Kids-Friendly Menus"],
             image: "https://images.unsplash.com/photo-1530103043960-ef38714abb15?q=80&w=2069",
+            path: "/birthday-party-catering-chennai",
+            alt: "Birthday party catering Chennai - Fun and Interactive",
             reverse: false
         },
         {
@@ -166,6 +177,8 @@ const ServicesPage = () => {
             ],
             highlights: ["Authentic Regional Cuisine", "Traditional Pandal Setup", "Sattvic Food Options", "Festive Sweet Hampers"],
             image: "https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=2062",
+            path: "/event-catering-services-chennai",
+            alt: "Traditional event catering services in Chennai",
             reverse: true
         }
     ];
