@@ -14,6 +14,7 @@ import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import QuotationPage from './pages/QuotationPage';
 import SubmissionSuccess from './pages/SubmissionSuccess';
+import EventDetailPage from './pages/EventDetailPage';
 import MobileBottomNav from './components/MobileBottomNav';
 import WeddingCatering from './pages/services/WeddingCatering';
 import CorporateCatering from './pages/services/CorporateCatering';
@@ -95,6 +96,7 @@ function App() {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/events" element={<EventsPage />} />
+            <Route path="/events/:id" element={<EventDetailPage />} />
             <Route path="/quotation" element={<QuotationPage />} />
             <Route path="/submission-success" element={<SubmissionSuccess />} />
 

@@ -75,24 +75,28 @@ const EventCard = ({ event, isSmall = false }) => {
             className={`group card-luxury flex flex-col h-full w-full ${isSmall ? '' : ''}`}
         >
             {/* Image Container with 4:5 ratio */}
-            <div className={`relative w-full overflow-hidden bg-gray-100 ${isSmall ? 'aspect-[4/3]' : 'aspect-[4/5]'}`}>
-                <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 left-4 inline-block px-3 py-1 bg-[#141414]/90 backdrop-blur-md text-[#C9A227] border border-[#C9A227]/30 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-luxury-card">
-                    {event.date}
+            <Link to={`/events/${event.id}`} className="block">
+                <div className={`relative w-full overflow-hidden bg-gray-100 ${isSmall ? 'aspect-[4/3]' : 'aspect-[4/5]'}`}>
+                    <img
+                        src={event.image}
+                        alt={event.title}
+                        className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4 inline-block px-3 py-1 bg-[#141414]/90 backdrop-blur-md text-[#C9A227] border border-[#C9A227]/30 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-luxury-card">
+                        {event.date}
+                    </div>
                 </div>
-            </div>
+            </Link>
 
             {/* Content Container */}
             <div className="p-6 flex flex-col flex-grow">
                 <div className="flex justify-between items-start gap-4 mb-3">
-                    <h3 className="text-xl  font-bold text-accent-dark leading-tight group-hover:text-primary transition-colors duration-300 relative inline-block">
-                        {event.title}
-                        <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
-                    </h3>
+                    <Link to={`/events/${event.id}`}>
+                        <h3 className="text-xl  font-bold text-accent-dark leading-tight group-hover:text-primary transition-colors duration-300 relative inline-block text-white">
+                            {event.title}
+                            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
+                        </h3>
+                    </Link>
                 </div>
 
                 <div className="flex items-center gap-2 text-sm text-gray-400 font-medium mb-3">
@@ -108,13 +112,13 @@ const EventCard = ({ event, isSmall = false }) => {
                     <span className="text-luxury-shimmer text-shadow-premium font-bold text-sm">
                         {event.price}
                     </span>
-                    <Link to="/contact">
+                    <Link to={`/events/${event.id}`}>
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             className="px-5 py-2 bg-gold-gradient text-black rounded-full font-bold text-xs uppercase tracking-wider shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 flex items-center gap-2"
                         >
-                            Book Now <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                            View Details <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                         </motion.button>
                     </Link>
                 </div>

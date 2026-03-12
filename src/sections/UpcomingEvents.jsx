@@ -155,43 +155,45 @@ const UpcomingEvents = () => {
                                     viewport={{ once: true }}
                                     className="group/card cursor-pointer"
                                 >
-                                    {/* Image Container (3:4 Aspect Ratio) */}
-                                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-luxury-card border border-[#C9A227]/20 transition-all duration-500 group-hover/card:-translate-y-2">
-                                        <img
-                                            src={event.image}
-                                            alt={event.title}
-                                            className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity" />
+                                    <Link to={`/events/${event.id}`}>
+                                        {/* Image Container (3:4 Aspect Ratio) */}
+                                        <div className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-luxury-card border border-[#C9A227]/20 transition-all duration-500 group-hover/card:-translate-y-2">
+                                            <img
+                                                src={event.image}
+                                                alt={event.title}
+                                                className="w-full h-full object-cover transition-transform duration-1000 group-hover/card:scale-110"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity" />
 
-                                        {/* Minimal Hover Overlay */}
-                                        <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
-                                            <Link to="/contact" className="w-full btn-luxury-shimmer py-3 text-center block text-sm">
-                                                Book Event
-                                            </Link>
+                                            {/* Minimal Hover Overlay */}
+                                            <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover/card:translate-y-0 group-hover/card:opacity-100 transition-all duration-300">
+                                                <div className="w-full btn-luxury-shimmer py-3 text-center block text-sm">
+                                                    View Details
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    {/* Text Info (Minimalist) */}
-                                    <div className="mt-6 space-y-1">
-                                        <div className="flex items-center justify-between">
-                                            <span className="text-[11px] font-extrabold text-[#C9A227] uppercase tracking-[0.2em] opacity-90">
-                                                {event.date}
-                                            </span>
-                                            <div className="h-px flex-1 bg-[#C9A227]/20 mx-4" />
-                                            <span className="text-luxury-shimmer font-bold text-sm bg-luxury-gold/10 px-2 py-0.5 rounded-lg flex items-center shadow-text-glow">
-                                                <IndianRupee size={12} strokeWidth={3} className="mr-0.5 text-[#C9A227]" />
-                                                {event.price}
-                                            </span>
+                                        {/* Text Info (Minimalist) */}
+                                        <div className="mt-6 space-y-1">
+                                            <div className="flex items-center justify-between">
+                                                <span className="text-[11px] font-extrabold text-[#C9A227] uppercase tracking-[0.2em] opacity-90">
+                                                    {event.date}
+                                                </span>
+                                                <div className="h-px flex-1 bg-[#C9A227]/20 mx-4" />
+                                                <span className="text-luxury-shimmer font-bold text-sm bg-luxury-gold/10 px-2 py-0.5 rounded-lg flex items-center shadow-text-glow">
+                                                    <IndianRupee size={12} strokeWidth={3} className="mr-0.5 text-[#C9A227]" />
+                                                    {event.price}
+                                                </span>
+                                            </div>
+                                            <h3 className="text-xl  font-bold text-accent-dark leading-snug group-hover/card:text-[#C9A227] transition-colors pt-2 text-white">
+                                                {event.title}
+                                            </h3>
+                                            <div className="flex items-center gap-1.5 text-gray-300 text-sm font-medium mt-1">
+                                                <MapPin size={14} className="text-[#C9A227]/60" />
+                                                {event.location}
+                                            </div>
                                         </div>
-                                        <h3 className="text-xl  font-bold text-accent-dark leading-snug group-hover/card:text-[#C9A227] transition-colors pt-2">
-                                            {event.title}
-                                        </h3>
-                                        <div className="flex items-center gap-1.5 text-gray-300 text-sm font-medium mt-1">
-                                            <MapPin size={14} className="text-[#C9A227]/60" />
-                                            {event.location}
-                                        </div>
-                                    </div>
+                                    </Link>
                                 </motion.div>
                             </SwiperSlide>
                         ))}
