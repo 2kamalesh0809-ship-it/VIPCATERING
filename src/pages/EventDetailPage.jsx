@@ -62,7 +62,7 @@ const EventDetailPage = () => {
 
                     // Force the kalyana-biriyani.jpg for this specific title
                     const forcedImage = (data.title && data.title.toLowerCase().replace(/\s/g, '').includes('biriyani'))
-                        ? "/kalyana-biriyani.jpg"
+                        ? `/kalyana-biriyani.jpg?v=${Date.now()}`
                         : (data.imageUrl || "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000");
 
                     setEvent({
