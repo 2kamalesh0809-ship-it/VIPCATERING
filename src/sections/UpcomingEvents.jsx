@@ -83,7 +83,7 @@ const UpcomingEvents = () => {
                         date: formattedDate,
                         location: data.location || "Catering Event",
                         price: data.price ? data.price.toLocaleString() : "1,500",
-                        image: (data.title && data.title.toLowerCase().includes('kalyana biriyani'))
+                        image: (data.title && data.title.toLowerCase().replace(/\s/g, '').includes('biriyani'))
                             ? "/kalyana-biriyani.jpg"
                             : (data.imageUrl || "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069"),
                         createdAt: data.createdAt?.toMillis() || Date.now()

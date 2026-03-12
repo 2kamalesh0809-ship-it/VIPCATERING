@@ -153,7 +153,7 @@ const EventsPage = () => {
                         date: formattedDate,
                         location: data.location || "Catering Event",
                         price: data.price ? `Starts ₹${data.price}` : "Premium",
-                        image: (data.title && data.title.toLowerCase().includes('kalyana biriyani'))
+                        image: (data.title && data.title.toLowerCase().replace(/\s/g, '').includes('biriyani'))
                             ? "/kalyana-biriyani.jpg"
                             : (data.imageUrl || "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000"),
                         description: data.desc || "A beautifully catered experience.",
