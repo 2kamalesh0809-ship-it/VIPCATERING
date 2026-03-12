@@ -280,7 +280,8 @@ const EventDetailPage = () => {
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-                    const isBiriyani = (data.title && data.title.toLowerCase().replace(/\s/g, '').includes('biriyani'));
+                    const normalizedTitle = (data.title || "").toLowerCase();
+                    const isBiriyani = normalizedTitle.includes('bir') && normalizedTitle.includes('yan');
 
                     // Force the kalyana-biriyani.jpg for this specific title
                     const forcedImage = isBiriyani
@@ -327,8 +328,9 @@ const EventDetailPage = () => {
         );
     }
 
-    // Special layout for Biriyani
-    if (event.title.toLowerCase().includes('biriyani')) {
+    // Special layout for Biriyani - Case insensitive check for 'bir' and 'yan'
+    const eventTitleLower = (event.title || "").toLowerCase();
+    if (eventTitleLower.includes('bir') && eventTitleLower.includes('yan')) {
         return <BiriyaniEventDetail event={event} navigate={navigate} />;
     }
 
