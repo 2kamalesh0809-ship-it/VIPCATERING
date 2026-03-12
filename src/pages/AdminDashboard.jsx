@@ -80,34 +80,45 @@ const AdminDashboard = () => {
                 try {
                     imageUrl = await new Promise((resolve, reject) => {
                         const timeout = setTimeout(() => {
-                            reject(new Error("Upload timed out. This might be a CORS issue or slow connection."));
-                        }, 30000); // 30s timeout
+                            reject(new Error("Upload timed out (60s). This usually means:\n1. Firebase Storage is not enabled in your console.\n2. CORS rules are not configured.\n3. Security rules are blocking the upload."));
+                        }, 60000); // Increased to 60s for slow connections
 
                         uploadTask.on('state_changed',
                             (snapshot) => {
                                 const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                                 setUploadProgress(progress);
+                                console.log(`Upload progress: ${progress}%`);
                             },
                             (error) => {
                                 clearTimeout(timeout);
+                                console.error("Firebase Storage Error:", error);
                                 reject(error);
                             },
                             async () => {
                                 clearTimeout(timeout);
-                                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                                resolve(downloadURL);
+                                try {
+                                    const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                                    resolve(downloadURL);
+                                } catch (urlErr) {
+                                    reject(urlErr);
+                                }
                             }
                         );
                     });
                 } catch (uploadErr) {
                     setIsUploading(false);
-                    console.error("Upload error:", uploadErr);
+                    console.error("Critical Upload failure:", uploadErr);
 
-                    if (uploadErr.message?.includes("CORS") || uploadErr.code === "storage/forbidden") {
-                        showToast("Storage CORS error detected. Please configure Firebase Storage CORS rules.", "error");
-                        throw new Error("CORS Policy blocked the upload. See 'storage.cors.json' for fix instructions.");
+                    if (uploadErr.code === 'storage/unauthorized') {
+                        showToast("Permission Denied: Check your Firebase Storage Rules.", "error");
+                    } else if (uploadErr.code === 'storage/quota-exceeded') {
+                        showToast("Storage Quota Exceeded.", "error");
+                    } else if (uploadErr.message?.includes("timed out")) {
+                        showToast("Upload Timed Out. Please check your internet or Firebase console.", "error");
+                    } else {
+                        showToast("Upload failed: " + (uploadErr.message || "Unknown error"), "error");
                     }
-                    throw uploadErr;
+                    return; // Stop the save process
                 }
                 setIsUploading(false);
             }
