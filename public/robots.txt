@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://vipcateringchennai.in/sitemap.xml

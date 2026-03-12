@@ -59,13 +59,19 @@ const EventDetailPage = () => {
 
                 if (docSnap.exists()) {
                     const data = docSnap.data();
+
+                    // Force the kalyana-biriyani.jpg for this specific title
+                    const forcedImage = (data.title && data.title.toLowerCase().includes('kalyana biriyani'))
+                        ? "/kalyana-biriyani.jpg"
+                        : (data.imageUrl || "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000");
+
                     setEvent({
                         id: docSnap.id,
                         title: data.title || "VIP Event",
                         date: data.date || "TBD",
                         location: data.location || "Catering Event",
                         price: data.price ? `₹${data.price}` : "Premium",
-                        image: data.imageUrl || "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=1000",
+                        image: forcedImage,
                         description: data.desc || "A beautifully catered experience crafted by VIP Catering Chennai.",
                     });
                 } else {
