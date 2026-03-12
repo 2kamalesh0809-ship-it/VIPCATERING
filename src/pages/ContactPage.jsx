@@ -81,10 +81,10 @@ const ContactPage = () => {
                 >
                     <span className="text-primary font-bold tracking-[0.3em] uppercase text-[10px] md:text-xs mb-2 md:mb-3 block">Get In Touch</span>
                     <h1 className="text-2xl md:text-5xl font-bold text-white mb-3 md:mb-6 leading-tight">
-                        Let's Create Something <span className="text-primary italic">Memorable</span>
+                        Best Catering Services in <span className="text-primary italic">Chennai</span>
                     </h1>
                     <p className="text-sm md:text-lg text-gray-300 max-w-2xl mx-auto font-light leading-relaxed opacity-80">
-                        We're here to help you plan the perfect culinary experience for your special event.
+                        Planning an event in Chennai? From luxury weddings to premium corporate events, VIP Catering is your trusted local partner for unforgettable culinary experiences.
                     </p>
                 </motion.div>
             </section>
@@ -146,10 +146,10 @@ const ContactPage = () => {
                                             className="w-full px-6 py-4 rounded-xl bg-black/40 border border-primary/10 text-white focus:border-primary focus:bg-black/60 outline-none transition-all duration-300 appearance-none"
                                         >
                                             <option className="bg-[#1a1a1a]">Wedding Catering</option>
-                                            <option className="bg-[#1a1a1a]">Corporate Event</option>
-                                            <option className="bg-[#1a1a1a]">Birthday Party</option>
-                                            <option className="bg-[#1a1a1a]">Private Function</option>
-                                            <option className="bg-[#1a1a1a]">Other Ceremony</option>
+                                            <option className="bg-[#1a1a1a]">Corporate Catering</option>
+                                            <option className="bg-[#1a1a1a]">Birthday Party Catering</option>
+                                            <option className="bg-[#1a1a1a]">Veg Catering Services</option>
+                                            <option className="bg-[#1a1a1a]">Other Event Catering</option>
                                         </select>
                                     </div>
                                     <div>
