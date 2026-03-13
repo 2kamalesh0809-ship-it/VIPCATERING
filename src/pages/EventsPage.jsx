@@ -8,7 +8,7 @@ import { FreeMode, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-
+import { ArrowLeft } from 'lucide-react';
 import CTASection from '../sections/CTASection';
 
 const defaultEvents = [
@@ -71,55 +71,54 @@ const defaultEvents = [
 const EventCard = ({ event, isSmall = false }) => {
     return (
         <motion.div
-            whileHover={{ y: -8 }}
-            className={`group card-luxury flex flex-col h-full w-full ${isSmall ? '' : ''}`}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            whileHover={{ y: -6 }}
+            className={`group bg-white/80 backdrop-blur-[10px] rounded-2xl overflow-hidden shadow-xl border border-luxury-gold/10 transition-all duration-300 ease-out h-full flex flex-col`}
         >
-            {/* Image Container with 4:5 ratio */}
-            <Link to={`/events/${event.id}`} className="block">
+            {/* Image Container */}
+            <Link to={`/events/${event.id}`} className="block relative overflow-hidden">
                 <div className={`relative w-full overflow-hidden bg-gray-100 ${isSmall ? 'aspect-[4/3]' : 'aspect-[4/5]'}`}>
                     <img
                         src={event.image}
                         alt={event.title}
-                        className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transform transition-transform duration-[2s] group-hover:scale-110"
                     />
-                    <div className="absolute top-4 left-4 inline-block px-3 py-1 bg-[#141414]/90 backdrop-blur-md text-[#C9A227] border border-[#C9A227]/30 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-luxury-card">
+                    <div className="absolute inset-0 bg-gradient-to-t from-luxury-dark/40 to-transparent"></div>
+                    <div className="absolute top-5 left-5 inline-block px-4 py-1.5 bg-luxury-dark/90 backdrop-blur-md text-luxury-gold border border-luxury-gold/30 text-[9px] font-bold uppercase tracking-[0.2em] rounded-lg shadow-2xl">
                         {event.date}
                     </div>
                 </div>
             </Link>
 
             {/* Content Container */}
-            <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start gap-4 mb-3">
+            <div className="p-8 flex flex-col flex-grow bg-white">
+                <div className="mb-4">
                     <Link to={`/events/${event.id}`}>
-                        <h3 className="text-xl  font-bold text-accent-dark leading-tight group-hover:text-primary transition-colors duration-300 relative inline-block text-white">
+                        <h3 className="text-2xl font-serif font-bold text-luxury-dark leading-tight group-hover:text-luxury-gold transition-colors duration-300">
                             {event.title}
-                            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-full" />
                         </h3>
                     </Link>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm text-gray-400 font-medium mb-3">
+                <div className="flex items-center gap-2 text-xs text-luxury-accent font-bold uppercase tracking-wider mb-4 opacity-80">
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                     {event.location}
                 </div>
 
-                <p className="text-gray-300 text-sm leading-relaxed mb-6 flex-grow">
+                <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow font-light">
                     {event.description}
                 </p>
 
-                <div className="pt-4 border-t border-[#C9A227]/20 mt-auto flex justify-between items-center">
-                    <span className="text-luxury-shimmer text-shadow-premium font-bold text-sm">
+                <div className="pt-6 border-t border-luxury-gold/10 mt-auto flex justify-between items-center">
+                    <span className="text-luxury-dark font-serif font-bold text-lg">
                         {event.price}
                     </span>
                     <Link to={`/events/${event.id}`}>
-                        <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="px-5 py-2 bg-gold-gradient text-black rounded-full font-bold text-xs uppercase tracking-wider shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 flex items-center gap-2"
-                        >
-                            View Details <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                        </motion.button>
+                        <button className="flex items-center gap-2 text-luxury-gold font-bold uppercase tracking-widest text-[10px] hover:gap-4 transition-all group/btn">
+                            Explore <ArrowLeft className="rotate-180" size={14} />
+                        </button>
                     </Link>
                 </div>
             </div>
@@ -170,38 +169,38 @@ const EventsPage = () => {
     }, []);
 
     return (
-        <div className="bg-background-soft min-h-screen pt-12 md:pt-32 relative">
-            <div className="bg-luxury-blobs absolute inset-0 mix-blend-multiply opacity-50 z-0"></div>
-            <div className="noise-overlay opacity-[0.03] z-0"></div>
+        <div className="bg-[#F7F2E8] min-h-screen pt-12 md:pt-40 relative overflow-hidden">
+            {/* Background Texture Overlay */}
+            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')] z-0"></div>
 
             {/* 1) PAGE HEADER */}
-            <div className="container mx-auto px-6 mb-4 md:mb-16 relative z-10">
+            <div className="container mx-auto px-6 mb-12 md:mb-24 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="max-w-3xl"
+                    className="max-w-4xl"
                 >
-                    <span className="text-primary font-bold tracking-[0.2em] uppercase text-xs mb-4 block">
+                    <span className="text-luxury-accent font-bold tracking-[0.4em] uppercase text-xs mb-4 block">
                         Catered Experiences
                     </span>
-                    <h1 className="text-5xl md:text-7xl  font-bold text-luxury-shimmer text-shadow-premium tracking-tight mb-4 md:mb-6">
-                        Our Events
+                    <h1 className="text-5xl md:text-8xl font-serif font-bold text-luxury-dark tracking-tight mb-8">
+                        Our <span className="text-luxury-accent italic font-normal">Events</span>
                     </h1>
-                    <p className="hidden md:block text-lg md:text-xl text-gray-300 font-medium">
-                        Discover the premium catering experiences we've crafted for unforgettable occasions across the country.
+                    <p className="text-lg md:text-xl text-luxury-dark/60 font-light italic leading-relaxed max-w-2xl">
+                        Discover the premium catering experiences we've crafted for unforgettable occasions, where every detail is served with the gold standard of taste.
                     </p>
                 </motion.div>
             </div>
 
             {/* 2) FEATURED EVENTS CAROUSEL */}
-            <section className="mb-16 md:mb-32 mt-0 overflow-visible">
-                <div className="container mx-auto px-6 mb-8 flex items-end justify-between relative z-10">
-                    <h2 className="text-2xl md:text-3xl  font-bold text-accent-dark">
+            <section className="mb-24 md:mb-40 overflow-visible relative z-10">
+                <div className="container mx-auto px-6 mb-12 flex items-end justify-between">
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-luxury-dark">
                         Upcoming & Featured
                     </h2>
                 </div>
-                <div className="pl-6 md:pl-[calc((100vw-1280px)/2+24px)] xl:pl-[calc((100vw-1536px)/2+24px)] 2xl:pl-[calc((100vw-1536px)/2+24px)]">
+                <div className="pl-6 md:pl-[calc((100vw-1280px)/2+24px)] xl:pl-[calc((100vw-1536px)/2+24px)]">
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -210,18 +209,18 @@ const EventsPage = () => {
                     >
                         <Swiper
                             slidesPerView={1.2}
-                            spaceBetween={16}
+                            spaceBetween={24}
                             grabCursor={true}
                             freeMode={true}
                             breakpoints={{
-                                640: { slidesPerView: 2.2, spaceBetween: 20 },
-                                1024: { slidesPerView: 3.2, spaceBetween: 24 },
-                                1280: { slidesPerView: 4.2, spaceBetween: 24 },
+                                640: { slidesPerView: 2.2, spaceBetween: 30 },
+                                1024: { slidesPerView: 3.2, spaceBetween: 40 },
+                                1280: { slidesPerView: 3.5, spaceBetween: 50 },
                             }}
                             modules={[FreeMode]}
-                            className="!pb-16 !pr-6"
+                            className="!pb-24 !pr-6"
                         >
-                            {events.slice(0, 5).map((event) => (
+                            {events.map((event) => (
                                 <SwiperSlide key={`featured-${event.id}`} className="h-auto">
                                     <EventCard event={event} />
                                 </SwiperSlide>
@@ -231,10 +230,8 @@ const EventsPage = () => {
                 </div>
             </section>
 
-
-
             <CTASection />
-            <div className="h-20 md:hidden" />
+            <div className="h-20" />
         </div>
     );
 };

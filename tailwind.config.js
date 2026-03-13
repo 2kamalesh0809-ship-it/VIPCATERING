@@ -8,9 +8,15 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#C9A227',
+          DEFAULT: '#C8A45C', // New Luxury Gold
           light: '#D4B34B',
           dark: '#A6861F',
+        },
+        luxury: {
+          gold: '#C8A45C',
+          dark: '#2B1B0F',
+          bg: '#F7F2E8',
+          accent: '#8B5E3C',
         },
         background: {
           DEFAULT: '#0F0F0F',
@@ -18,13 +24,14 @@ export default {
         },
         accent: {
           dark: '#F5F5F5',
-          gold: '#C9A227',
+          gold: '#C8A45C',
         }
       },
       fontFamily: {
-        title: ['Nunito', 'sans-serif'],
-        body: ['Poppins', 'sans-serif'],
-        sans: ['Poppins', 'sans-serif'],
+        title: ['Playfair Display', 'serif'],
+        body: ['Inter', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Playfair Display', 'serif'],
       },
       backgroundImage: {
         'gold-gradient': 'linear-gradient(135deg, #C9A227 0%, #A6861F 100%)',

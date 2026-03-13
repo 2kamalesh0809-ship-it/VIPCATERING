@@ -37,221 +37,375 @@ const defaultEvents = [
 
 const BiriyaniEventDetail = ({ event, navigate }) => {
     return (
-        <div className="min-h-screen bg-[#FDF6E3] text-[#4A3000] font-serif overflow-x-hidden">
-            {/* Parchment/Antique Style Background Overlay */}
-            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/old-paper.png')] z-0"></div>
+        <div className="event-page min-h-screen relative overflow-x-hidden selection:bg-[#d4a24a]/30">
+            <style>{`
+                .event-page {
+                    background: linear-gradient(rgba(40,20,10,0.85), rgba(40,20,10,0.95)), url('/biryani-table.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    background-attachment: fixed;
+                    color: #f5e7c8;
+                    font-family: 'Inter', sans-serif;
+                }
+                .event-page::before {
+                    content: "";
+                    position: fixed;
+                    inset: 0;
+                    backdrop-filter: blur(16px);
+                    -webkit-backdrop-filter: blur(16px);
+                    pointer-events: none;
+                    z-index: 0;
+                }
 
-            {/* Hero Section */}
-            <section className="relative pt-24 pb-16 px-6 border-b-2 border-[#D4AF37]/30">
-                <div className="container mx-auto max-w-5xl">
-                    <motion.button
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        onClick={() => navigate(-1)}
-                        className="flex items-center gap-2 text-[#8B4513] font-bold uppercase tracking-widest text-xs mb-8 hover:gap-4 transition-all"
+                .event-page h1, .event-page h2, .event-page h3, .event-page .font-serif {
+                    font-family: 'Playfair Display', serif;
+                    letter-spacing: 0.02em;
+                }
+                .event-page p, .event-page span, .event-page div {
+                    font-family: 'Inter', sans-serif;
+                }
+                .event-page .glass-card {
+                    background: rgba(120, 70, 40, 0.45);
+                    backdrop-filter: blur(14px);
+                    -webkit-backdrop-filter: blur(14px);
+                    border-radius: 20px;
+                    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(212, 162, 74, 0.25);
+                    border: 1px solid rgba(212, 162, 74, 0.2);
+                    transition: transform 0.4s ease, box-shadow 0.4s ease;
+                }
+                .event-page .glass-card:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 100px rgba(212, 162, 74, 0.4);
+                }
+                .event-page .divider {
+                    background: linear-gradient(90deg, transparent, rgba(212,162,74,0.6), transparent);
+                    height: 1px;
+                    border: none;
+                    margin: 0 auto;
+                    width: 80%;
+                }
+                .event-page .text-gold { color: #d4a24a; }
+                
+                .event-page .biryani-hero {
+                    background: linear-gradient(rgba(60,30,10,0.85), rgba(60,30,10,0.9)), url('/biriyani-texture.jpg');
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    border-radius: 2rem;
+                    box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 120px rgba(212,162,74,0.25);
+                    position: relative;
+                    border: 1px solid rgba(212, 162, 74, 0.2);
+                }
+
+                .event-page .biryani-hero::after {
+                    content: "";
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(circle at center, rgba(0,0,0,0) 35%, rgba(0,0,0,0.6) 100%);
+                    pointer-events: none;
+                    border-radius: 2rem;
+                    z-index: 0;
+                }
+
+                .event-page .biryani-hero-btn {
+                    background: linear-gradient(135deg, #e2b565, #c7963b);
+                    color: #28140a;
+                    font-weight: 700;
+                    transition: all 0.3s ease;
+                    border: none;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+                }
+                .event-page .biryani-hero-btn:hover {
+                    box-shadow: 0 0 20px rgba(212, 162, 74, 0.6);
+                    transform: translateY(-4px);
+                }
+                
+                .event-page .luxury-btn {
+                    background: linear-gradient(135deg, #e2b565, #c7963b);
+                    color: #28140a;
+                    font-weight: 700;
+                    transition: all 0.3s ease;
+                    border: none;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+                }
+                .event-page .luxury-btn:hover {
+                    box-shadow: 0 0 20px rgba(212, 162, 74, 0.6);
+                    transform: translateY(-4px);
+                }
+
+                .event-page .menu-card {
+                    border-radius: 20px;
+                    overflow: hidden;
+                    position: relative;
+                    transition: transform 0.4s ease;
+                }
+                .event-page .menu-card:hover {
+                    transform: scale(1.06);
+                }
+                
+                .event-page .hero-img-container {
+                    position: relative;
+                }
+                .event-page .hero-img-container::before {
+                    content: "";
+                    position: absolute;
+                    inset: -30px;
+                    background: radial-gradient(circle, #d4a24a55, transparent 60%);
+                    z-index: -1;
+                    border-radius: 50%;
+                }
+                
+                .event-page .content-wrapper {
+                    position: relative;
+                    z-index: 10;
+                }
+            `}</style>
+
+            <div className="content-wrapper">
+                {/* Hero Section */}
+                <section className="pt-32 pb-24 md:pt-40 md:pb-32 px-6">
+                    <div className="container mx-auto max-w-6xl biryani-hero relative overflow-hidden">
+                        <div className="p-10 md:p-16">
+                            <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-gold font-bold uppercase tracking-widest text-xs mb-12 hover:gap-4 transition-all opacity-80 hover:opacity-100">
+                                <ArrowLeft size={16} /> Back to Events
+                            </button>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                                <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8 text-center lg:text-left">
+                                    <div className="inline-flex items-center justify-center lg:justify-start gap-4 mb-2 w-full">
+                                        <div className="h-px w-12 bg-[#d4a24a]/40" />
+                                        <span className="uppercase tracking-[0.4em] font-bold text-xs text-gold">Premium Catering</span>
+                                        <div className="h-px w-12 bg-[#d4a24a]/40" />
+                                    </div>
+                                    <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-white drop-shadow-2xl" style={{ fontFamily: '"Playfair Display", serif' }}>
+                                        Kalyana Biryani <br />
+                                        <span className="italic font-normal" style={{ color: '#e2b565' }}>Virundhu</span>
+                                    </h1>
+                                    <p className="text-lg md:text-xl font-light italic leading-relaxed max-w-xl mx-auto lg:mx-0 opacity-90 drop-shadow-md">
+                                        Chinna function ah? Family get-together ah? <br />
+                                        <span className="font-semibold text-white">Week-end biryani party an!</span>
+                                    </p>
+                                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }} className="inline-block bg-[rgba(120,70,40,0.8)] text-gold px-10 py-3 rounded-full font-bold shadow-2xl border border-[#d4a24a]/40 tracking-widest text-sm">
+                                        Sunday Mega Cooking Event
+                                    </motion.div>
+                                    <div className="flex flex-wrap gap-5 pt-6 justify-center lg:justify-start">
+                                        <button className="px-10 py-4 biryani-hero-btn rounded-xl tracking-wider">
+                                            Book Your Slot
+                                        </button>
+                                        <button className="px-10 py-4 bg-[rgba(0,0,0,0.3)] border border-[#e2b565] text-[#e2b565] rounded-xl font-bold hover:bg-[rgba(212,162,74,0.15)] transition-all transform hover:-translate-y-1 tracking-wider backdrop-blur-md">
+                                            View Menu
+                                        </button>
+                                    </div>
+                                </motion.div>
+
+                                <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1 }} className="hero-img-container perspective-1000 z-10">
+                                    <div className="relative rounded-[2.5rem] bg-white/5 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] transform-style-3d transition-transform duration-700 hover:rotate-y-2 hover:rotate-x-2">
+                                        <img src={event.image || "https://images.unsplash.com/photo-1633945274405-b6c8069047b0?q=80&w=1000"} alt="Grand Biriyani" className="w-full h-auto rounded-[2.5rem] transform transition-transform duration-700 hover:scale-105" style={{ filter: 'drop-shadow(0 30px 40px rgba(0,0,0,0.6))' }} />
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div className="divider" />
+
+                {/* Concept Section */}
+                <section className="py-24 px-6 relative">
+                    <div className="container mx-auto max-w-5xl glass-card p-10 md:p-16">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative group order-2 md:order-1">
+                                <div className="absolute -inset-4 border border-[#d4a24a]/30 rounded-[2rem] -z-10 translate-x-3 translate-y-3 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500"></div>
+                                <div className="rounded-[2rem] overflow-hidden shadow-2xl">
+                                    <img src="/Royal Hyderabadi Biryani – Authentic Dum Style Perfection.jpg" alt="Cooking Process" className="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700 group-hover:scale-105" />
+                                </div>
+                            </motion.div>
+                            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="space-y-10 order-1 md:order-2">
+                                <h2 className="text-4xl md:text-5xl font-serif font-bold leading-tight text-white drop-shadow-md">
+                                    Enna indha Kalyana <br />
+                                    <span className="text-gold italic font-normal">Biryani Concept?</span>
+                                </h2>
+                                <ul className="space-y-6">
+                                    {[
+                                        "Small biriyani orders ellam (5 pax • 10 pax • 20 pax)",
+                                        "Saturday ku one mega biriyani cooking event ah combine pannuvom.",
+                                        "Fresh ah tasty ana biriyani ungalukku direct ah delivery pannuvom."
+                                    ].map((point, i) => (
+                                        <li key={i} className="flex items-start gap-5 text-lg opacity-90 group">
+                                            <div className="mt-2.5 w-2 h-2 rounded-full bg-[#d4a24a] shadow-[0_0_10px_rgba(212,162,74,0.8)] shrink-0 group-hover:scale-150 transition-transform" />
+                                            <span className="font-light leading-relaxed drop-shadow-sm">{point}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        </div>
+                    </div>
+                </section>
+
+                <div className="divider" />
+
+                {/* Menu Section */}
+                <section className="py-24 px-6 relative">
+                    <div className="container mx-auto max-w-6xl text-center glass-card p-10 md:p-16">
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="inline-flex flex-col items-center mb-16">
+                            <span className="text-gold font-bold tracking-[0.3em] uppercase text-xs mb-4">Taste the Legend</span>
+                            <h2 className="text-4xl md:text-6xl font-serif font-bold text-white drop-shadow-lg">VIP Kalyana Biryani Menu</h2>
+                            <div className="mt-6 w-24 h-1 bg-[#d4a24a] rounded-full shadow-[0_0_10px_rgba(212,162,74,0.5)]"></div>
+                        </motion.div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                            {[
+                                { title: "Chicken Biryani", img: "/chickkenbiriyani.jpg" },
+                                { title: "Mutton Biryani", img: "/muttonbiriyani.jpg" },
+                                { title: "Veg Biryani", img: "/vegbiriyani.jpg" }
+                            ].map((item, i) => (
+                                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.2 }} viewport={{ once: true }} key={i}>
+                                    <div className="menu-card aspect-[4/5] shadow-[0_15px_30px_rgba(0,0,0,0.6)] border border-[#d4a24a]/20 group">
+                                        <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(20,10,0,0.95)] via-[rgba(20,10,0,0.4)] to-transparent"></div>
+                                        <div className="absolute bottom-10 left-0 right-0 px-6 transition-all duration-300">
+                                            <h3 className="text-3xl font-serif font-bold text-gold tracking-wide drop-shadow-md mb-2">{item.title}</h3>
+                                            <div className="w-12 h-1 bg-[#d4a24a] mx-auto group-hover:w-24 transition-all duration-500 shadow-[0_0_8px_rgba(212,162,74,0.8)]"></div>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <div className="divider" />
+
+                {/* How it Works */}
+                <section className="py-24 px-6 relative">
+                    <div
+                        className="container mx-auto max-w-6xl text-center p-10 md:p-16 rounded-[2rem] shadow-2xl relative overflow-hidden border border-[#d4a24a]/20"
+                        style={{
+                            background: `linear-gradient(rgba(60,30,10,0.8), rgba(60,30,10,0.9)), url('/A%20Blank%20Parchment%20Texture%20With%20Soft%20Warm%20Tones%20And%20Subtle%20Gradients%20Background%20Wallpaper%20Image%20For%20Free%20Download%20-%20Pngtree.jpg')`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                        }}
                     >
-                        <ArrowLeft size={16} /> Back to Events
-                    </motion.button>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="text-center lg:text-left space-y-6"
-                        >
-                            <div className="inline-flex items-center gap-4 mb-2">
-                                <div className="h-px w-8 bg-[#D4AF37]" />
-                                <span className="uppercase tracking-[0.3em] font-bold text-sm text-[#D4AF37]">VIP Catering</span>
-                                <div className="h-px w-8 bg-[#D4AF37]" />
-                            </div>
-                            <h1 className="text-5xl md:text-7xl font-bold leading-tight text-[#2D1B00]">
-                                Kalyana Biryani <br />
-                                <span className="text-[#8B4513] italic">Virundhu</span>
-                            </h1>
-                            <p className="text-xl md:text-2xl text-[#5D4037] font-medium italic opacity-90 max-w-xl">
-                                Chinna function ah? Family get-together ah? <br />
-                                Week-end biryani party an!
-                            </p>
-
-                            <div className="inline-block bg-[#8B4513] text-[#FDF6E3] px-10 py-3 rounded-full font-bold shadow-xl border-2 border-[#D4AF37]/50">
-                                Sunday Mega Cooking Event
-                            </div>
-
-                            <div className="flex flex-wrap gap-4 pt-6 justify-center lg:justify-start">
-                                <button className="px-8 py-4 bg-[#D4AF37] text-[#2D1B00] rounded-xl font-bold shadow-lg hover:bg-[#E5C158] transition-all transform hover:-translate-y-1">
-                                    Book Your Slot
-                                </button>
-                                <button className="px-8 py-4 bg-[#2D1B00] text-[#D4AF37] rounded-xl font-bold shadow-lg hover:bg-[#3D2B00] border border-[#D4AF37]/30 transition-all transform hover:-translate-y-1">
-                                    View Menu
-                                </button>
-                            </div>
-                        </motion.div>
-
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            className="relative"
-                        >
-                            <div className="absolute inset-0 bg-[#D4AF37] rounded-[3rem] blur-3xl opacity-20 -z-10 animate-pulse"></div>
-                            <img
-                                src={event.image}
-                                alt="Grand Biriyani"
-                                className="w-full h-auto rounded-[3rem] shadow-2xl border-4 border-[#D4AF37]/20"
-                            />
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Concept Section */}
-            <section className="py-20 px-6 bg-[#F9F1DC]">
-                <div className="container mx-auto max-w-5xl">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        <div className="order-2 md:order-1">
-                            <img
-                                src="https://images.unsplash.com/photo-1541014741259-de529411b96a?q=80&w=1000"
-                                alt="Cooking Process"
-                                className="rounded-[2.5rem] shadow-xl border border-[#D4AF37]/10"
-                            />
-                        </div>
-                        <div className="space-y-8 order-1 md:order-2">
-                            <h2 className="text-3xl md:text-4xl font-bold text-[#2D1B00]">
-                                Enna indha Kalyana <br />
-                                <span className="text-[#8B4513]">Biryani Concept?</span>
+                        <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="flex items-center justify-center gap-4 md:gap-8 mb-20 relative z-20">
+                            <div className="h-px w-20 md:w-40 bg-gradient-to-r from-transparent to-[#e2b565]"></div>
+                            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#e2b565]" style={{ textShadow: "0 0 15px rgba(226,181,101,0.5)" }}>
+                                How It Works
                             </h2>
-                            <ul className="space-y-5">
-                                {[
-                                    "Small biriyani orders ellam (5 pax • 10 pax • 20 pax)",
-                                    "Saturday ku one mega biriyani cooking event ah combine pannuvom.",
-                                    "Fresh ah tasty ana biriyani ungalukku direct ah delivery pannuvom."
-                                ].map((point, i) => (
-                                    <motion.li
-                                        initial={{ opacity: 0, x: 20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: i * 0.2 }}
-                                        key={i}
-                                        className="flex items-start gap-4 text-lg text-[#5D4037]"
+                            <div className="h-px w-20 md:w-40 bg-gradient-to-l from-transparent to-[#e2b565]"></div>
+                        </motion.div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 relative z-10 mt-10">
+                            {/* Connecting Dotted Line */}
+                            <div className="hidden md:block absolute top-[5.5rem] left-[15%] right-[15%] h-px border-dotted border-t-[3px] border-[#d4a24a]/50 z-0"></div>
+
+                            {[
+                                { step: "1", title: "Register Order", sub: "Website la order pannunga", img: "https://cdn-icons-png.flaticon.com/512/2950/2950536.png" },
+                                { step: "2", title: "Saturday Cooking", sub: "Ungal order mega cooking list la add pannuvom", img: "https://cdn-icons-png.flaticon.com/512/3565/3565401.png" },
+                                { step: "3", title: "Home Delivery", sub: "Fresh ah Sunday morning unga veetuku vandhurum", img: "https://cdn-icons-png.flaticon.com/512/2830/2830305.png" }
+                            ].map((item, i) => (
+                                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.2 }} viewport={{ once: true }} key={i} className="relative z-10 group px-4">
+                                    <div
+                                        className="mx-auto w-full transition-all duration-500 group-hover:-translate-y-4 group-hover:scale-[1.02] relative"
+                                        style={{
+                                            background: 'rgba(120,70,40,0.35)',
+                                            backdropFilter: 'blur(10px)',
+                                            WebkitBackdropFilter: 'blur(10px)',
+                                            borderRadius: '20px',
+                                            boxShadow: '0 25px 50px rgba(0,0,0,0.4)',
+                                            padding: '2.5rem 2rem'
+                                        }}
                                     >
-                                        <div className="mt-2 w-2 h-2 rounded-full bg-[#D4AF37] shrink-0" />
-                                        {point}
-                                    </motion.li>
-                                ))}
-                            </ul>
+                                        {/* Step Number Badge */}
+                                        <div
+                                            className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 flex items-center justify-center font-bold text-xl font-serif z-20"
+                                            style={{
+                                                background: '#c7963b',
+                                                color: '#fff',
+                                                borderRadius: '50%',
+                                                boxShadow: '0 0 10px rgba(212,162,74,0.6)'
+                                            }}
+                                        >
+                                            {item.step}
+                                        </div>
+
+                                        {/* Illustrated Icon with radial glow */}
+                                        <div className="relative w-32 h-32 mx-auto mb-8 z-10 flex items-center justify-center">
+                                            <div
+                                                className="absolute inset-0"
+                                                style={{ background: 'radial-gradient(circle, #d4a24a30 0%, transparent 70%)', filter: 'blur(8px)' }}
+                                            ></div>
+                                            <img
+                                                src={item.img}
+                                                alt={item.title}
+                                                className="w-24 h-24 object-contain relative z-10 group-hover:scale-110 transition-transform duration-500"
+                                                style={{ filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.4))' }}
+                                            />
+                                        </div>
+
+                                        {/* Text Content */}
+                                        <div className="relative z-10 mt-6">
+                                            <h3 className="text-2xl font-serif font-bold tracking-wide mb-3 text-white transition-colors duration-300 drop-shadow-md group-hover:text-[#e2b565]">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-[#f5e7c8] opacity-90 font-light text-[15px] leading-relaxed font-sans">
+                                                {item.sub}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
-                    </div>
-                </div>
-            </section>
 
-            {/* Menu Section */}
-            <section className="py-20 px-6">
-                <div className="container mx-auto max-w-6xl text-center">
-                    <div className="inline-flex items-center gap-6 mb-12">
-                        <div className="h-px w-12 bg-[#D4AF37]/50" />
-                        <h2 className="text-3xl md:text-4xl font-bold text-[#2D1B00]">VIP Kalyana Biryani Menu</h2>
-                        <div className="h-px w-12 bg-[#D4AF37]/50" />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {[
-                            { title: "Chicken Biryani", img: "https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?q=80&w=1000" },
-                            { title: "Mutton Biryani", img: "https://images.unsplash.com/photo-1543353071-10c8ba85a904?q=80&w=1000" },
-                            { title: "Veg Biryani", img: "https://images.unsplash.com/photo-1589302168068-964662d933f1?q=80&w=1000" }
-                        ].map((item, i) => (
-                            <motion.div
-                                whileHover={{ y: -10 }}
-                                key={i}
-                                className="group relative rounded-3xl overflow-hidden shadow-xl border border-[#D4AF37]/10"
+                        {/* CTA Button */}
+                        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: 0.8 }} viewport={{ once: true }} className="mt-20 relative z-20">
+                            <button
+                                className="px-12 py-4 rounded-xl font-bold text-lg tracking-widest transition-all duration-300 transform hover:-translate-y-1 font-serif uppercase"
+                                style={{
+                                    background: 'linear-gradient(135deg, #e2b565, #c7963b)',
+                                    color: '#28140a',
+                                    boxShadow: '0 10px 25px rgba(0,0,0,0.5)'
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 25px rgba(212,162,74,0.8)'}
+                                onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 10px 25px rgba(0,0,0,0.5)'}
                             >
-                                <div className="aspect-square relative">
-                                    <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#2D1B00] via-transparent to-transparent opacity-60"></div>
-                                    <div className="absolute bottom-6 left-0 right-0">
-                                        <h3 className="text-2xl font-bold text-white tracking-widest uppercase">{item.title}</h3>
-                                        <div className="mt-2 w-12 h-0.5 bg-[#D4AF37] mx-auto group-hover:w-20 transition-all"></div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
+                                Book Now
+                            </button>
+                        </motion.div>
                     </div>
-                    <p className="mt-12 text-[#D4AF37] font-bold italic border-y border-[#D4AF37]/20 py-4 inline-block px-10">
-                        Luxury Biryani Combo For Small Functions
-                    </p>
-                </div>
-            </section>
+                </section>
 
-            {/* How it Works */}
-            <section className="py-24 px-6 bg-[#2D1B00] text-[#FDF6E3] relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1532339142463-fd0a89b2742e?q=80&w=2000')] bg-cover bg-center"></div>
-                <div className="container mx-auto max-w-5xl relative z-10 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-20">How It Works</h2>
+                <div className="h-40"></div>
+            </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-16 relative">
-                        {/* Connecting Line */}
-                        <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-0.5 border-t-2 border-dashed border-[#D4AF37]/30"></div>
-
-                        {[
-                            { step: "1", title: "Register Order", sub: "Website la order pannunga", icon: "📱" },
-                            { step: "2", title: "Saturday Cooking", sub: "Ungal order mega cooking list la add pannuvom", icon: "🔥" },
-                            { step: "3", title: "Delivery", sub: "Fresh ah biryani cook pannitu Sunday ku deliver pannuvom", icon: "🚚" }
-                        ].map((item, i) => (
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.2 }}
-                                key={i}
-                                className="space-y-6"
-                            >
-                                <div className="w-24 h-24 bg-[#D4AF37] text-[#2D1B00] rounded-full mx-auto flex items-center justify-center text-4xl shadow-[0_0_30px_rgba(212,175,55,0.3)] relative z-20">
-                                    {item.icon}
-                                    <div className="absolute -top-2 -right-2 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#2D1B00] font-bold text-xl border-2 border-[#D4AF37]">
-                                        {item.step}
-                                    </div>
-                                </div>
-                                <h3 className="text-2xl font-bold text-[#D4AF37]">{item.title}</h3>
-                                <p className="text-gray-300 italic opacity-80">{item.sub}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    <div className="mt-20">
-                        <button className="bg-gold-gradient px-12 py-4 rounded-full text-[#2D1B00] font-black uppercase tracking-widest text-lg shadow-2xl hover:scale-105 transition-all">
-                            Book Now <ArrowLeft className="inline-block ml-2 rotate-180" />
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            {/* Sticky Promo Footer */}
+            {/* Sticky Footer */}
             <motion.div
-                initial={{ y: 100 }}
-                animate={{ y: 0 }}
-                className="fixed bottom-0 left-0 right-0 bg-[#FDF6E3] border-t-2 border-[#D4AF37] py-6 px-6 shadow-[0_-10px_40px_rgba(0,0,0,0.2)] z-[100]"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ type: "spring", damping: 20, stiffness: 100, delay: 1 }}
+                className="fixed bottom-0 left-0 right-0 z-[100] border-t border-[#d4a24a]/30 py-4 px-6 bg-[rgba(40,20,10,0.85)] backdrop-blur-xl shadow-[0_-20px_50px_rgba(0,0,0,0.8)]"
             >
                 <div className="container mx-auto max-w-6xl flex flex-wrap items-center justify-between gap-6">
                     <div className="flex items-center gap-6">
-                        <div className="text-center">
-                            <h4 className="text-[10px] font-bold uppercase tracking-widest text-[#8B4513]">Next Event</h4>
-                            <p className="font-bold text-[#2D1B00]">NEXT SUNDAY</p>
+                        <div className="hidden sm:block">
+                            <h4 className="text-[9px] font-bold uppercase tracking-[0.3em] text-gold mb-1">Coming Up</h4>
+                            <p className="font-serif font-bold text-white text-sm">NEXT SUNDAY</p>
                         </div>
-                        <div className="h-10 w-px bg-[#D4AF37]/30"></div>
-                        <div className="bg-[#2D1B00] text-[#D4AF37] px-6 py-2 rounded-lg font-bold text-sm shadow-inner">
-                            72 Plates Booked | <span className="text-white">18 Slots Left</span>
+                        <div className="hidden sm:block h-8 w-px bg-[#d4a24a]/30"></div>
+                        <div className="bg-[rgba(120,70,40,0.4)] backdrop-blur-sm text-white px-6 py-2 rounded-xl font-bold text-xs tracking-widest border border-[#d4a24a]/20 shadow-inner">
+                            72 <span className="opacity-50 text-[10px]">PLATES</span> | <span className="text-gold">18 SLOTS LEFT</span>
                         </div>
                     </div>
 
-                    <div className="flex gap-4">
-                        <a href="tel:+919840512345" className="flex items-center gap-2 px-6 py-3 bg-[#D4AF37] text-[#2D1B00] rounded-xl font-black text-sm uppercase tracking-wider shadow-lg hover:shadow-[#D4AF37]/30 transition-all">
-                            <Send size={18} /> Call Now
+                    <div className="flex gap-4 w-full sm:w-auto">
+                        <a href="tel:+918124142113" className="flex-1 sm:flex-none flex items-center justify-center gap-3 px-8 py-3 luxury-btn rounded-xl text-xs uppercase tracking-widest">
+                            <Send size={14} /> Call Now
                         </a>
-                        <a href="https://wa.me/919840512345" className="flex items-center gap-2 px-6 py-3 bg-[#25D366] text-white rounded-xl font-black text-sm uppercase tracking-wider shadow-lg hover:shadow-[#25D366]/30 transition-all">
-                            <CheckCircle2 size={18} /> Whatsapp Order
+                        <a href="https://wa.me/918124142113" className="flex-1 sm:flex-none flex items-center justify-center gap-3 px-8 py-3 bg-[#25D366] text-white rounded-xl font-bold text-xs uppercase tracking-widest shadow-[0_10px_20px_rgba(37,211,102,0.2)] hover:shadow-[0_0_20px_rgba(37,211,102,0.6)] hover:-translate-y-1 transition-all">
+                            <CheckCircle2 size={14} /> WhatsApp
                         </a>
                     </div>
                 </div>
             </motion.div>
-
-            {/* Add padding to compensate for sticky footer */}
-            <div className="h-24"></div>
         </div>
     );
 };
@@ -335,59 +489,60 @@ const EventDetailPage = () => {
     }
 
     return (
-        <div className="pt-24 md:pt-32 pb-20 bg-background-soft min-h-screen relative overflow-hidden">
-            <div className="bg-luxury-blobs absolute inset-0 mix-blend-multiply opacity-50 z-0"></div>
+        <div className="pt-32 md:pt-48 pb-24 bg-[#F7F2E8] min-h-screen relative overflow-hidden font-sans">
+            {/* Background Texture Overlay */}
+            <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/pinstriped-suit.png')] z-0"></div>
 
             <div className="container mx-auto px-6 relative z-10">
                 <motion.button
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     onClick={() => navigate(-1)}
-                    className="flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-xs mb-8 hover:gap-4 transition-all"
+                    className="flex items-center gap-2 text-luxury-accent font-bold uppercase tracking-[0.2em] text-[10px] mb-12 hover:gap-4 transition-all group"
                 >
-                    <ArrowLeft size={16} /> Back to Events
+                    <ArrowLeft size={14} className="group-hover:text-luxury-gold transition-colors" /> Back to Events
                 </motion.button>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                     {/* Left Side - Image and Summary */}
                     <div className="lg:col-span-7">
                         <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
+                            initial={{ opacity: 0, scale: 0.98 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.8 }}
-                            className="relative aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10"
+                            className="relative aspect-video rounded-[3rem] overflow-hidden shadow-2xl border border-luxury-gold/10 bg-white p-2"
                         >
-                            <img src={event.image} alt={event.title} className="w-full h-full object-cover" />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <img src={event.image} alt={event.title} className="w-full h-full object-cover rounded-[2.8rem]" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-luxury-dark/60 via-transparent to-transparent opacity-40"></div>
 
-                            <div className="absolute bottom-8 left-8 right-8">
+                            <div className="absolute bottom-10 left-10 right-10">
                                 <motion.span
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.3 }}
-                                    className="bg-primary px-4 py-1.5 rounded-full text-black font-bold text-[10px] uppercase tracking-widest mb-4 inline-block"
+                                    className="bg-luxury-gold px-5 py-2 rounded-full text-white font-bold text-[9px] uppercase tracking-[0.3em] mb-4 inline-block shadow-lg"
                                 >
-                                    Featured Event
+                                    Exclusive Experience
                                 </motion.span>
                                 <motion.h1
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4 }}
-                                    className="text-4xl md:text-5xl font-bold text-white tracking-tighter"
+                                    className="text-4xl md:text-6xl font-serif font-bold text-white tracking-tight drop-shadow-lg"
                                 >
                                     {event.title}
                                 </motion.h1>
                             </div>
                         </motion.div>
 
-                        <div className="mt-12 space-y-8">
+                        <div className="mt-16 space-y-12">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
                             >
-                                <h2 className="text-2xl font-bold text-white mb-4">Event Overview</h2>
-                                <p className="text-gray-300 text-lg leading-relaxed font-light">
+                                <h2 className="text-3xl font-serif font-bold text-luxury-dark mb-6">The Royal Presentation</h2>
+                                <p className="text-luxury-dark/70 text-lg leading-relaxed font-light italic">
                                     {event.description}
                                 </p>
                             </motion.div>
@@ -396,19 +551,21 @@ const EventDetailPage = () => {
                                 {[
                                     { icon: Calendar, label: "Date", value: event.date },
                                     { icon: MapPin, label: "Location", value: event.location },
-                                    { icon: Utensils, label: "Service", value: "Full Catering" },
-                                    { icon: Users, label: "Capacity", value: "Unlimited" }
+                                    { icon: Utensils, label: "Service", value: "White Glove" },
+                                    { icon: Users, label: "Capacity", value: "Premium" }
                                 ].map((item, i) => (
                                     <motion.div
                                         key={i}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: 0.6 + (i * 0.1) }}
-                                        className="bg-white/5 p-4 rounded-2xl border border-white/10"
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true }}
+                                        transition={{ delay: 0.1 * i, duration: 0.8, ease: "easeOut" }}
+                                        whileHover={{ y: -6 }}
+                                        className="bg-white/80 backdrop-blur-[10px] p-6 rounded-3xl border border-luxury-gold/10 shadow-xl shadow-luxury-gold/5 transition-all duration-300 ease-out"
                                     >
-                                        <item.icon size={20} className="text-primary mb-2" />
-                                        <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-1">{item.label}</p>
-                                        <p className="text-white font-bold text-sm">{item.value}</p>
+                                        <item.icon size={22} className="text-luxury-gold mb-4" />
+                                        <p className="text-[10px] uppercase tracking-[0.2em] text-luxury-accent font-bold mb-2">{item.label}</p>
+                                        <p className="text-luxury-dark font-bold text-sm tracking-tight">{item.value}</p>
                                     </motion.div>
                                 ))}
                             </div>
@@ -418,52 +575,56 @@ const EventDetailPage = () => {
                     {/* Right Side - Booking/Inquiry Card */}
                     <div className="lg:col-span-5">
                         <motion.div
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 30 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.7 }}
-                            className="bg-[#141414] rounded-[2.5rem] p-8 md:p-10 border border-primary/20 shadow-2xl sticky top-32"
+                            transition={{ delay: 0.5, duration: 0.8, ease: "easeOut" }}
+                            whileHover={{ y: -6 }}
+                            className="bg-white/80 backdrop-blur-[10px] rounded-[3rem] p-10 md:p-12 border border-luxury-gold/20 shadow-2xl sticky top-40 transition-all duration-300 ease-out"
                         >
-                            <h3 className="text-2xl font-bold text-white mb-6">Event Details</h3>
+                            <h3 className="text-3xl font-serif font-bold text-luxury-dark mb-8">Event Inquiry</h3>
 
-                            <div className="space-y-6 mb-8">
-                                <div className="flex justify-between items-center py-4 border-b border-primary/10">
-                                    <span className="text-gray-400">Pricing</span>
-                                    <span className="text-xl font-bold text-primary">{event.price}</span>
+                            <div className="space-y-8 mb-10">
+                                <div className="flex justify-between items-end py-6 border-b border-luxury-gold/10">
+                                    <span className="text-luxury-dark/50 text-sm font-medium">Estimated Pricing</span>
+                                    <span className="text-2xl font-serif font-bold text-luxury-gold leading-none">{event.price}</span>
                                 </div>
-                                <div className="flex justify-between items-center py-4 border-b border-primary/10">
-                                    <span className="text-gray-400">Available In</span>
-                                    <span className="text-white font-bold">Pan India</span>
+                                <div className="flex justify-between items-center py-4 text-sm">
+                                    <span className="text-luxury-dark/50">Availability</span>
+                                    <span className="text-luxury-dark font-bold uppercase tracking-widest text-[10px]">Nationwide</span>
                                 </div>
-                                <div className="flex justify-between items-center py-4 border-b border-primary/10">
-                                    <span className="text-gray-400">Customization</span>
-                                    <span className="text-white font-bold text-right">Fully Customizable Menu</span>
+                                <div className="flex justify-between items-center py-4 text-sm">
+                                    <span className="text-luxury-dark/50">Cuisine Style</span>
+                                    <span className="text-luxury-dark font-bold uppercase tracking-widest text-[10px]">Global Fusion</span>
                                 </div>
                             </div>
 
-                            <div className="space-y-4 mb-10">
-                                <p className="text-xs font-bold text-primary uppercase tracking-[0.2em]">What's Included</p>
-                                {[
-                                    "Signature Starter Platters",
-                                    "Premium Main Course Buffet",
-                                    "Live Fusion Counters",
-                                    "Gourmet Dessert Corner",
-                                    "Royal Plated Service"
-                                ].map((item, i) => (
-                                    <div key={i} className="flex items-center gap-3 text-gray-300 text-sm">
-                                        <CheckCircle2 size={16} className="text-primary shrink-0" />
-                                        {item}
-                                    </div>
-                                ))}
+                            <div className="bg-luxury-bg/50 p-8 rounded-3xl mb-10 border border-luxury-gold/10">
+                                <p className="text-[10px] font-bold text-luxury-accent uppercase tracking-[0.3em] mb-6">VIP Gold Standard</p>
+                                <div className="space-y-4">
+                                    {[
+                                        "Signature Live Stations",
+                                        "Royal Presentation Platters",
+                                        "Executive Chef Service",
+                                        "Artisanal Dessert Corner"
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-4 text-luxury-dark/80 text-sm">
+                                            <div className="w-1.5 h-1.5 rounded-full bg-luxury-gold shrink-0"></div>
+                                            <span className="font-light">{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
 
                             <Link to="/contact">
-                                <button className="w-full bg-gold-gradient text-black py-4 rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 flex items-center justify-center gap-3 hover:scale-[1.02] transition-transform">
-                                    <Send size={20} /> Inquire for this Event
+                                <button className="w-full bg-luxury-dark text-luxury-gold py-5 rounded-2xl font-bold text-lg shadow-2xl flex items-center justify-center gap-4 hover:bg-black transition-all transform hover:-translate-y-1 overflow-hidden relative group">
+                                    <span className="relative z-10 flex items-center gap-3">
+                                        Request Quotation <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                    </span>
                                 </button>
                             </Link>
 
-                            <p className="text-center text-gray-500 text-xs mt-6">
-                                * Prices may vary based on guest count and menu selection.
+                            <p className="text-center text-luxury-dark/40 text-[10px] uppercase tracking-widest mt-8 font-medium">
+                                * Bespoke menus crafted upon request
                             </p>
                         </motion.div>
                     </div>
