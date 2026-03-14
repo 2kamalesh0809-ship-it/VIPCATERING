@@ -25,6 +25,7 @@ import BlogPage from './pages/BlogPage';
 import WeddingIdeasBlog from './pages/blog/WeddingIdeasBlog';
 import CorporateMenuBlog from './pages/blog/CorporateMenuBlog';
 import ChooseCatererBlog from './pages/blog/ChooseCatererBlog';
+import VIPKalyanaBiriyani from './pages/VIPKalyanaBiriyani';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -116,6 +117,9 @@ function App() {
             {/* Private Admin Routes */}
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+
+            {/* Hidden Promotional Routes */}
+            <Route path="/vip-kalyana-biriyani" element={<VIPKalyanaBiriyani />} />
           </Routes>
         </main>
         <Footer />
